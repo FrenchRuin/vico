@@ -15,7 +15,7 @@
   - Tailwind v4 `@theme`(`src/styles/global.css`)에 design.md 1절 토큰 등록, Google Fonts 로드
   - 완료 기준: `pnpm dev`로 빈 페이지가 뜨고 `pnpm check`, `pnpm build`가 통과
 
-- [ ] **T02. 스키마와 타입 (`lib/schema.ts`)**
+- [x] **T02. 스키마와 타입 (`lib/schema.ts`)**
   - VICO.md frontmatter zod 스키마 (spec.md 3절 표의 모든 규칙: 글자 수, recruiting일 때 필수 필드, contact의 이메일/전화번호 거부, demo URL, status 공백 무시). 빈 값(`contact:` → `null`)과 빈 배열 허용
   - 도구 이름 정규화 함수 (알려지지 않은 도구는 그대로 유지)
   - `Project`, `ProjectsData` 타입과 zod 스키마 (spec.md 6절)
