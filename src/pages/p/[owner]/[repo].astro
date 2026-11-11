@@ -1,0 +1,77 @@
+---
+import { badgeMarkdown } from '../../../../lib/badge';
+import { getSiteData, type ProjectView } from '../../../../lib/data';
+import { getSimilar } from '../../../../lib/similar';
+import { config } from '../../../../vico.config';
+import { CopyButton } from '../../../components/CopyButton';
+import { Footer } from '../../../components/Footer';
+import { Header } from '../../../components/Header';
+import {
+  ChecklistSection,
+  NextTaskStrip,
+  ProjectSummary,
+  RecruitBanner,
+  SimilarCard,
+} from '../../../components/ProjectDetail';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+type Props = { project: ProjectView; similar: ProjectView[]; nowIso: string; generatedAt: string };
+
+export function getStaticPaths() {
+  const now = new Date();
+  const { projects, generatedAt } = getSiteData(now);
+  return projects.map((project) => ({
+    params: { owner: project.owner, repo: project.repo },
+    props: {
+      project,
+      similar: getSimilar(project, projects, now),
+      nowIso: now.toISOString(),
+      generatedAt,
+    },
+  }));
+}
+
+const { project, similar, nowIso, generatedAt } = Astro.props;
+const now = new Date(nowIso);
+const markdown = badgeMarkdown(project);
+---
+
+<BaseLayout title={`${project.title} — Vico`} description={project.summary}>
+  <Header />
+  <main class="mx-auto flex max-w-narrow flex-col gap-6 px-gutter pt-6 pb-16">
+    <a href="/" class="inline-flex min-h-11 items-center self-start text-sm font-medium text-text-sub hover:underline">
+      ← 프로젝트 목록
+    </a>
+
+    <ProjectSummary project={project} now={now} />
+    <NextTaskStrip nextTask={project.nextTask} />
+    <ChecklistSection project={project} />
+    <RecruitBanner project={project} discordUrl={config.discordUrl} />
+
+    <section aria-labelledby="badge-title" class="flex flex-col gap-4 rounded-section border border-border bg-surface p-6">
+      <div>
+        <h2 id="badge-title" class="text-lg font-bold">README 뱃지</h2>
+        <p class="mt-1 text-sm text-text-muted">레포 README에 붙이면 진행률과 상태가 자동으로 바뀌어요.</p>
+      </div>
+      <img src={`/badge/${project.owner}/${project.repo}.svg`} alt={`Vico 진행률 ${project.progress}%`} height="20" class="h-5 self-start" />
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
+        <code class="min-w-0 flex-1 overflow-x-auto rounded-[10px] bg-deep px-4 py-3 font-mono text-xs whitespace-nowrap text-deep-text">{markdown}</code>
+        <CopyButton client:visible text={markdown} />
+      </div>
+    </section>
+
+    {
+      similar.length > 0 && (
+        <section aria-labelledby="similar-title" class="flex flex-col gap-4">
+          <h2 id="similar-title" class="text-lg font-bold">비슷한 프로젝트</h2>
+          <div class="grid gap-4 sm:grid-cols-3">
+            {similar.map((item) => <SimilarCard project={item} />)}
+          </div>
+        </section>
+      )
+    }
+
+    <p class="text-center text-[13px] text-text-muted">정보는 3시간마다 레포의 VICO.md에서 갱신돼요.</p>
+  </main>
+  <Footer generatedAt={generatedAt} />
+</BaseLayout>
