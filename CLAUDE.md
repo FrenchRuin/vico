@@ -46,8 +46,10 @@ vico/
 │   ├── similar.ts           # 비슷한 프로젝트, 하이라이트
 │   ├── filter.ts            # 메인 탭/도구/검색/정렬 규칙과 URL 쿼리
 │   ├── badge.ts             # README 뱃지 마크다운과 SVG
+│   ├── registry.ts          # projects.json 항목 형식 (github.com/owner/repo)
 │   └── data.ts              # 데이터 읽기 진입점 (사이트는 이것만 사용)
 ├── scripts/                 # GitHub Actions에서 실행
+│   ├── github.ts            # GitHub API 클라이언트(주입 가능), 재시도, 동시 실행 제한
 │   ├── collect.ts
 │   ├── validate.ts
 │   └── maintain.ts

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@astrojs/react": "7.1.7",
+    "@octokit/rest": "22.0.1",
     "@tailwindcss/vite": "4.3.5",
     "astro": "7.4.10",
     "gray-matter": "4.0.3",
