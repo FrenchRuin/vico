@@ -194,6 +194,7 @@ export const config = {
   removeAfterErrorDays: 7,      // 수집 실패가 이만큼 계속되면 정리 PR에 포함
   maxStepBarItems: 20,          // 이보다 많으면 StepBar 대신 일반 진행률 바
   maxActivePerOwner: 3,
+  similarLimit: 3,              // F-16 비슷한 프로젝트 최대 개수
   minChecklistItems: 3,
   siteUrl: 'https://vico.pages.dev',
   repoUrl: 'https://github.com/{관리자}/vico',   // 실제 주소로 교체

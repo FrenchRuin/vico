@@ -29,7 +29,7 @@
   - 이전/현재 단계 목록을 받아 새로 완료된 항목을 찾는 `findNewlyCompleted(prev, next)` (spec.md F-15: 이전에 같은 텍스트로 미완료였던 항목만, prev가 없으면 빈 결과)
   - 완료 기준: 제목 없음, 제목 여러 개, 빈 체크리스트, 전부 완료, 중첩 목록, 대문자 X, **`templates/VICO.md` 원본 파싱(단계 3개·항목 5개)**, 주석/코드 블록 속 `##`·체크박스 무시, 문구가 바뀐 항목은 새로 완료로 안 셈 테스트 포함
 
-- [ ] **T04. 상태와 추천 (`lib/status.ts`, `lib/similar.ts`)**
+- [x] **T04. 상태와 추천 (`lib/status.ts`, `lib/similar.ts`)**
   - `getStatus(project, now, config)` → 활발/잠잠/휴면/완료 (spec.md 4절 판정 순서, 경과일 = 내림)
   - `getDormantSince(project, config)` → 휴면 시작일 (spec.md 4절)
   - `isActive(status)` (활발 또는 잠잠), `countActiveByOwner(projects, now)`
