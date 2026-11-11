@@ -120,6 +120,42 @@ export function listByOwner(projects: readonly ProjectView[], owner: string): Pr
   return projects.filter((p) => p.owner.toLowerCase() === key);
 }
 
+export type OwnerProfile = {
+  owner: string;
+  /** 진행중(활발 → 잠잠, 각각 최근 활동순) */
+  ongoing: ProjectView[];
+  done: ProjectView[];
+  dormant: ProjectView[];
+  totalStars: number;
+  /** registeredAt 중 가장 이른 시각 */
+  since: string;
+};
+
+/** 아이디의 프로필 묶음. 프로젝트가 없으면 null. */
+export function getOwnerProfile(
+  projects: readonly ProjectView[],
+  owner: string,
+): OwnerProfile | null {
+  const mine = listByOwner(projects, owner);
+  const first = mine[0];
+  if (!first) return null;
+  const byRecent = (a: ProjectView, b: ProjectView) =>
+    new Date(b.activityAt).getTime() - new Date(a.activityAt).getTime();
+  const ongoing = mine
+    .filter((p) => isActive(p.status))
+    .sort((a, b) => (a.status === b.status ? byRecent(a, b) : a.status === 'active' ? -1 : 1));
+  return {
+    owner: first.owner,
+    ongoing,
+    done: mine.filter((p) => p.status === 'done').sort(byRecent),
+    dormant: mine.filter((p) => p.status === 'dormant').sort(byRecent),
+    totalStars: mine.reduce((sum, p) => sum + p.stars, 0),
+    since: mine
+      .map((p) => p.registeredAt)
+      .reduce((min, at) => (new Date(at).getTime() < new Date(min).getTime() ? at : min)),
+  };
+}
+
 /** 프로젝트가 있는 아이디 목록 (처음 나온 표기 그대로, 중복 없음). */
 export function listOwners(projects: readonly ProjectView[]): string[] {
   const owners = new Map<string, string>();
