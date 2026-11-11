@@ -84,7 +84,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
 
 ## 단계 3. 자동화
 
-- [ ] **T13. 수집 스크립트 `scripts/collect.ts`**
+- [x] **T13. 수집 스크립트 `scripts/collect.ts`**
   - spec.md 7절 A-01. Octokit, 동시 5개, 재시도 2번, 레이트 리밋 대기
   - 이전 `projects.data.json`을 읽어 `lastCompleted`, `registeredAt`, `errors[].since` 이어받기
   - 결과가 같으면 파일을 쓰지 않음(generatedAt 제외 비교)

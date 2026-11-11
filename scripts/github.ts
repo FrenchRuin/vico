@@ -29,7 +29,20 @@ function isNotFound(error: unknown): boolean {
 }
 
 export function createOctokitClient(token: string): GitHubClient {
-  const octokit = new Octokit({ auth: token, userAgent: 'vico-collect' });
+  // 요청 로그는 끄고, 실패 로그도 직접 처리하는 404/409는 뺀다 (5xx 등은 남긴다).
+  const octokit = new Octokit({
+    auth: token,
+    userAgent: 'vico-collect',
+    log: {
+      debug: () => {},
+      info: () => {},
+      warn: console.warn,
+      error: (message: string, ...rest: unknown[]) => {
+        if (/ - (404|409) with id /.test(message)) return;
+        console.error(message, ...rest);
+      },
+    },
+  });
 
   return {
     async getRepo(owner, repo) {
