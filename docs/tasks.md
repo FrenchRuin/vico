@@ -21,7 +21,7 @@
   - `Project`, `ProjectsData` 타입과 zod 스키마 (spec.md 6절)
   - 완료 기준: 정상/실패 케이스 테스트 각 5개 이상
 
-- [ ] **T03. VICO.md 파서 (`lib/parse.ts`, `lib/progress.ts`)**
+- [x] **T03. VICO.md 파서 (`lib/parse.ts`, `lib/progress.ts`)**
   - gray-matter로 frontmatter/본문 분리 → 스키마 검증
   - 체크박스 인식(`- [ ]`, `- [x]`, `- [X]`, `* [ ]`), `##` 기준 단계 묶기, 첫 `##` 이전 항목 처리, 링크/강조 제거
   - HTML 주석과 코드 블록 안은 무시 (spec.md 3절)
