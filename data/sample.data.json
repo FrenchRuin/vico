@@ -1,5 +1,496 @@
 {
-  "generatedAt": "2026-11-11T00:00:00.000Z",
-  "projects": [],
+  "generatedAt": "2026-11-11T03:00:00.000Z",
+  "projects": [
+    {
+      "owner": "minji-dev",
+      "repo": "community-hot",
+      "url": "https://github.com/minji-dev/community-hot",
+      "title": "커뮤니티 인기글 모아보기",
+      "summary": "국내 커뮤니티 인기글을 한곳에서 보는 앱",
+      "tools": ["Claude Code", "Cursor"],
+      "declaredStatus": "진행중",
+      "recruiting": true,
+      "lookingFor": ["프론트엔드 1명", "디자이너"],
+      "contact": "discord: minji_dev",
+      "demo": "https://example.com",
+      "stages": [
+        {
+          "name": "기획",
+          "items": [
+            {
+              "text": "아이디어 정리",
+              "done": true
+            },
+            {
+              "text": "PRD 작성",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "크롤러 구현",
+              "done": true
+            },
+            {
+              "text": "인기글 점수 계산",
+              "done": true
+            },
+            {
+              "text": "목록 화면",
+              "done": true
+            },
+            {
+              "text": "로그인",
+              "done": false
+            },
+            {
+              "text": "북마크",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "출시",
+          "items": [
+            {
+              "text": "배포",
+              "done": false
+            },
+            {
+              "text": "커뮤니티에 홍보",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 5,
+      "total": 9,
+      "progress": 56,
+      "nextTask": "로그인",
+      "lastCompleted": {
+        "text": "목록 화면",
+        "at": "2026-11-11T01:00:00.000Z"
+      },
+      "stars": 128,
+      "language": "TypeScript",
+      "lastCommitAt": "2026-11-11T01:00:00.000Z",
+      "vicoUpdatedAt": "2026-11-11T01:00:00.000Z",
+      "activityAt": "2026-11-11T01:00:00.000Z",
+      "registeredAt": "2026-10-02T03:00:00.000Z"
+    },
+    {
+      "owner": "hoon",
+      "repo": "meeting-summary-bot",
+      "url": "https://github.com/hoon/meeting-summary-bot",
+      "title": "회의록 요약 봇",
+      "summary": "슬랙 회의 스레드를 세 줄로 요약해 주는 봇",
+      "tools": ["Claude Code", "Codex"],
+      "declaredStatus": "진행중",
+      "recruiting": true,
+      "lookingFor": ["백엔드"],
+      "contact": "https://open.kakao.com/o/sVico123",
+      "demo": null,
+      "stages": [
+        {
+          "name": "기획",
+          "items": [
+            {
+              "text": "요약 형식 정하기",
+              "done": true
+            },
+            {
+              "text": "슬랙 앱 등록",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "스레드 읽기",
+              "done": true
+            },
+            {
+              "text": "요약 프롬프트 다듬기",
+              "done": false
+            },
+            {
+              "text": "요약 결과 저장",
+              "done": false
+            }
+          ]
+        },
+        {
+          "name": "출시",
+          "items": [
+            {
+              "text": "팀 채널에 설치",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 3,
+      "total": 6,
+      "progress": 50,
+      "nextTask": "요약 프롬프트 다듬기",
+      "lastCompleted": {
+        "text": "스레드 읽기",
+        "at": "2026-11-09T23:00:00.000Z"
+      },
+      "stars": 34,
+      "language": "Python",
+      "lastCommitAt": "2026-11-10T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-11-10T03:00:00.000Z",
+      "activityAt": "2026-11-10T03:00:00.000Z",
+      "registeredAt": "2026-10-17T03:00:00.000Z"
+    },
+    {
+      "owner": "minji-dev",
+      "repo": "meal-planner",
+      "url": "https://github.com/minji-dev/meal-planner",
+      "title": "일주일 식단 짜기",
+      "summary": "냉장고 재료로 일주일 식단과 장보기 목록을 만들어요",
+      "tools": ["Cursor"],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": null,
+      "stages": [
+        {
+          "name": "기획",
+          "items": [
+            {
+              "text": "화면 스케치",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "재료 입력",
+              "done": true
+            },
+            {
+              "text": "식단 추천",
+              "done": false
+            },
+            {
+              "text": "장보기 목록 내보내기",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 2,
+      "total": 4,
+      "progress": 50,
+      "nextTask": "식단 추천",
+      "lastCompleted": null,
+      "stars": 12,
+      "language": "TypeScript",
+      "lastCommitAt": "2026-11-08T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-11-08T03:00:00.000Z",
+      "activityAt": "2026-11-08T03:00:00.000Z",
+      "registeredAt": "2026-10-24T03:00:00.000Z"
+    },
+    {
+      "owner": "seoyeon",
+      "repo": "pet-diary",
+      "url": "https://github.com/seoyeon/pet-diary",
+      "title": "반려동물 일기장",
+      "summary": "산책, 사료, 병원 기록을 한 화면에",
+      "tools": ["Lovable"],
+      "declaredStatus": "진행중",
+      "recruiting": true,
+      "lookingFor": ["디자이너"],
+      "contact": "discord: seoyeon.pet",
+      "demo": "https://pet-diary.example.com",
+      "stages": [
+        {
+          "name": null,
+          "items": [
+            {
+              "text": "산책 기록",
+              "done": true
+            },
+            {
+              "text": "사료 기록",
+              "done": true
+            },
+            {
+              "text": "병원 일정 알림",
+              "done": false
+            },
+            {
+              "text": "사진 앨범",
+              "done": false
+            },
+            {
+              "text": "가족과 공유",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 2,
+      "total": 5,
+      "progress": 40,
+      "nextTask": "병원 일정 알림",
+      "lastCompleted": null,
+      "stars": 7,
+      "language": "TypeScript",
+      "lastCommitAt": "2026-11-05T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-11-05T03:00:00.000Z",
+      "activityAt": "2026-11-05T03:00:00.000Z",
+      "registeredAt": "2026-10-30T03:00:00.000Z"
+    },
+    {
+      "owner": "minji-dev",
+      "repo": "study-timer",
+      "url": "https://github.com/minji-dev/study-timer",
+      "title": "스터디 타이머",
+      "summary": "뽀모도로 타이머와 공부 기록을 같이",
+      "tools": ["Claude Code"],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": null,
+      "stages": [
+        {
+          "name": null,
+          "items": [
+            {
+              "text": "타이머",
+              "done": true
+            },
+            {
+              "text": "기록 저장",
+              "done": true
+            },
+            {
+              "text": "주간 통계",
+              "done": false
+            },
+            {
+              "text": "친구와 같이 공부하기",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 2,
+      "total": 4,
+      "progress": 50,
+      "nextTask": "주간 통계",
+      "lastCompleted": null,
+      "stars": 5,
+      "language": "JavaScript",
+      "lastCommitAt": "2026-10-22T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-10-22T03:00:00.000Z",
+      "activityAt": "2026-10-22T03:00:00.000Z",
+      "registeredAt": "2026-09-12T03:00:00.000Z"
+    },
+    {
+      "owner": "jun-k",
+      "repo": "budget-bot",
+      "url": "https://github.com/jun-k/budget-bot",
+      "title": "가계부 챗봇",
+      "summary": "카드 문자를 붙여 넣으면 가계부로 정리해요",
+      "tools": ["Cursor", "Codex", "Gemini CLI"],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": null,
+      "stages": [
+        {
+          "name": "기획",
+          "items": [
+            {
+              "text": "지원할 카드 문자 형식 모으기",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "문자 파싱",
+              "done": true
+            },
+            {
+              "text": "분류 규칙",
+              "done": false
+            },
+            {
+              "text": "월별 리포트",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 2,
+      "total": 4,
+      "progress": 50,
+      "nextTask": "분류 규칙",
+      "lastCompleted": null,
+      "stars": 19,
+      "language": "Go",
+      "lastCommitAt": "2026-10-12T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-10-12T03:00:00.000Z",
+      "activityAt": "2026-10-12T03:00:00.000Z",
+      "registeredAt": "2026-09-02T03:00:00.000Z"
+    },
+    {
+      "owner": "seoyeon",
+      "repo": "portfolio-site",
+      "url": "https://github.com/seoyeon/portfolio-site",
+      "title": "포트폴리오 사이트",
+      "summary": "디자이너 포트폴리오를 한 장짜리로",
+      "tools": ["Lovable", "Cursor"],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": "https://seoyeon.example.com",
+      "stages": [
+        {
+          "name": null,
+          "items": [
+            {
+              "text": "레이아웃",
+              "done": true
+            },
+            {
+              "text": "작업물 정리",
+              "done": true
+            },
+            {
+              "text": "연락처 폼",
+              "done": true
+            },
+            {
+              "text": "배포",
+              "done": true
+            }
+          ]
+        }
+      ],
+      "done": 4,
+      "total": 4,
+      "progress": 100,
+      "nextTask": null,
+      "lastCompleted": {
+        "text": "배포",
+        "at": "2026-11-02T03:00:00.000Z"
+      },
+      "stars": 41,
+      "language": "Astro",
+      "lastCommitAt": "2026-11-02T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-11-02T03:00:00.000Z",
+      "activityAt": "2026-11-02T03:00:00.000Z",
+      "registeredAt": "2026-09-22T03:00:00.000Z"
+    },
+    {
+      "owner": "hoon",
+      "repo": "typing-game",
+      "url": "https://github.com/hoon/typing-game",
+      "title": "한글 타자 게임",
+      "summary": "떨어지는 단어를 막는 타자 연습 게임",
+      "tools": ["Claude Code"],
+      "declaredStatus": "완료",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": null,
+      "stages": [
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "단어 떨어지기",
+              "done": true
+            },
+            {
+              "text": "점수",
+              "done": true
+            },
+            {
+              "text": "난이도",
+              "done": true
+            },
+            {
+              "text": "랭킹 (나중에)",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 3,
+      "total": 4,
+      "progress": 75,
+      "nextTask": "랭킹 (나중에)",
+      "lastCompleted": null,
+      "stars": 88,
+      "language": "TypeScript",
+      "lastCommitAt": "2026-09-20T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-09-20T03:00:00.000Z",
+      "activityAt": "2026-09-20T03:00:00.000Z",
+      "registeredAt": "2026-07-14T03:00:00.000Z"
+    },
+    {
+      "owner": "jun-k",
+      "repo": "rss-reader",
+      "url": "https://github.com/jun-k/rss-reader",
+      "title": "나만의 RSS 리더",
+      "summary": "좋아하는 블로그 새 글만 모아 보기",
+      "tools": ["Codex"],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": null,
+      "stages": [
+        {
+          "name": null,
+          "items": [
+            {
+              "text": "피드 추가",
+              "done": true
+            },
+            {
+              "text": "읽음 표시",
+              "done": false
+            },
+            {
+              "text": "모바일 화면",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 1,
+      "total": 3,
+      "progress": 33,
+      "nextTask": "읽음 표시",
+      "lastCompleted": null,
+      "stars": 3,
+      "language": "Rust",
+      "lastCommitAt": "2026-09-02T03:00:00.000Z",
+      "vicoUpdatedAt": "2026-09-02T03:00:00.000Z",
+      "activityAt": "2026-09-02T03:00:00.000Z",
+      "registeredAt": "2026-08-03T03:00:00.000Z"
+    }
+  ],
   "errors": []
 }

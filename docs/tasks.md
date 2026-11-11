@@ -38,8 +38,8 @@
   - `getHighlight(all, now)` (F-15 규칙: `lastCompleted.at` 기준, 휴면 제외)
   - 완료 기준: 경계값(14일 23시간=활발, 15일, 45일 23시간=잠잠, 46일) 테스트, status: 중단/완료 우선순위 테스트, 체크박스 0개는 완료 아님 테스트, 중단 프로젝트의 휴면 시작일 테스트
 
-- [ ] **T05. 데이터 읽기와 예시 데이터 (`lib/data.ts`, `data/sample.data.json`)**
-  - `loadData()`: `data/projects.data.json`이 있으면 그것, 없으면 `sample.data.json`
+- [x] **T05. 데이터 읽기와 예시 데이터 (`lib/data.ts`, `data/sample.data.json`)**
+  - `loadData()`: `data/projects.data.json`이 있으면 그것, 없으면 `sample.data.json` (날짜를 now 기준으로 옮김, spec.md 6절)
   - 화면용 헬퍼: 상태 계산이 붙은 목록, 아이디별 목록, 통계(F-10)
   - 예시 데이터 9개: 활발 4, 잠잠 2, 완료 2, 휴면 1 / 모집 중 3 / 단계가 있는 것과 없는 것 섞기 / 도구 4종. 디자인 캔버스의 예시 프로젝트를 그대로 써도 된다
   - 완료 기준: 예시 데이터가 `ProjectsData` 스키마를 통과하는 테스트
