@@ -48,7 +48,7 @@
 
 design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
 
-- [ ] **T06. 공통 컴포넌트**
+- [x] **T06. 공통 컴포넌트**
   - design.md 2절 표의 컴포넌트 전부 (FilterBar 제외)
   - 완료 기준: 개발용 페이지 `/dev/components`에서 상태 4종, 모집 유무, 단계 유무, 체크박스 0개 조합을 한 번에 확인 가능 (빌드 결과에는 포함하지 않음)
   - 구현 방법: `src/pages/dev/[page].astro`의 `getStaticPaths`가 `import.meta.env.DEV`일 때만 `components`를 돌려준다. (Astro는 `_`로 시작하는 파일을 라우팅에서 아예 빼서 `/_components`는 개발 서버에서도 열리지 않음)

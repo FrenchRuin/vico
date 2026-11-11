@@ -1,0 +1,146 @@
+---
+import { buildSiteData, getSiteData } from '../../../lib/data';
+import type { ActivityStatus } from '../../../lib/status';
+// 개발용 컴포넌트 확인 페이지. DEV에서만 경로를 만들어 빌드 결과에는 포함되지 않는다.
+// (Astro는 `_`로 시작하는 파일을 라우팅에서 빼므로 `/_components` 대신 이 방식을 쓴다)
+import { Avatar } from '../../components/Avatar';
+import { RecruitBadge, StatusBadge, ToolBadge } from '../../components/Badges';
+import { Banner, EmptyState, Stat } from '../../components/Blocks';
+import { Header } from '../../components/Header';
+import { ProgressRing } from '../../components/ProgressRing';
+import { ProjectCard } from '../../components/ProjectCard';
+import { RecruitCard } from '../../components/RecruitCard';
+import { StepBar } from '../../components/StepBar';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return import.meta.env.DEV ? [{ params: { page: 'components' } }] : [];
+}
+
+const now = new Date();
+const site = getSiteData(now);
+const base = site.projects[0];
+if (!base) throw new Error('예시 데이터가 비어 있어요');
+
+const manyItems = Array.from({ length: 25 }, (_, i) => ({ text: `항목 ${i + 1}`, done: i < 10 }));
+const edgeCases = buildSiteData(
+  'sample',
+  {
+    generatedAt: now.toISOString(),
+    errors: [],
+    projects: [
+      {
+        ...base,
+        repo: 'empty-checklist',
+        title: '체크리스트가 없는 프로젝트',
+        recruiting: false,
+        stages: [],
+        done: 0,
+        total: 0,
+        progress: 0,
+        nextTask: null,
+      },
+      {
+        ...base,
+        repo: 'many-items',
+        title: '항목이 25개라 일반 진행률 바로 보이는 프로젝트',
+        recruiting: false,
+        stages: [{ name: null, items: manyItems }],
+        done: 10,
+        total: 25,
+        progress: 40,
+        nextTask: '항목 11',
+      },
+      {
+        ...base,
+        repo: 'stopped',
+        title: '중단한 프로젝트 (모집 표시 숨김)',
+        declaredStatus: '중단',
+      },
+    ],
+  },
+  now,
+).projects;
+
+const statuses: ActivityStatus[] = ['active', 'quiet', 'dormant', 'done'];
+const recruiting = site.projects.filter((p) => p.recruiting && p.status !== 'dormant');
+const highlightItems = base.stages.flatMap((s) => s.items);
+const justIndex = highlightItems.findIndex((item) => item.text === base.lastCompleted?.text);
+---
+
+<BaseLayout title="컴포넌트 확인 (개발용)">
+  <Header current="projects" />
+  <main class="mx-auto flex max-w-content flex-col gap-10 px-gutter py-10">
+    <section class="flex flex-col gap-3">
+      <h1 class="text-[34px] font-bold">컴포넌트 확인</h1>
+      <p class="text-text-muted">개발 서버에서만 보이는 페이지예요. 빌드 결과에는 없어요.</p>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">뱃지와 아바타</h2>
+      <div class="flex flex-wrap items-center gap-2">
+        {statuses.map((status) => <StatusBadge status={status} suffix="3일 전" />)}
+        <RecruitBadge />
+        <ToolBadge tool="Claude Code" />
+        <ToolBadge tool="Cursor" />
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        {['minji-dev', 'hoon', 'seoyeon', 'jun-k', 'a', '한글아이디'].map((id) => <Avatar id={id} />)}
+        <Avatar id="minji-dev" size={80} />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">StepBar와 ProgressRing</h2>
+      <div class="grid max-w-xl gap-3">
+        {statuses.map((status) => <StepBar items={[true, true, true, false, false, false]} status={status} />)}
+        <StepBar items={[]} status="active" />
+        <StepBar items={manyItems.map((i) => i.done)} status="active" />
+        <div class="rounded-section bg-deep p-4">
+          <StepBar items={highlightItems.map((i) => i.done)} status="active" onDeep justCompletedIndex={justIndex} />
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        {statuses.map((status) => <ProgressRing done={6} total={10} progress={60} status={status} />)}
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">ProjectCard (예시 데이터 전체)</h2>
+      <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))">
+        {site.projects.map((project) => <ProjectCard project={project} now={now} />)}
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">ProjectCard (경계 상황)</h2>
+      <div class="grid gap-4" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr))">
+        {edgeCases.map((project) => <ProjectCard project={project} now={now} />)}
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">RecruitCard, Stat</h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {recruiting.map((project) => <RecruitCard project={project} />)}
+      </div>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        <Stat value={site.stats.registered} label="등록" />
+        <Stat value={site.stats.activeNow} label="지금 활발" />
+        <Stat value={site.stats.recruiting} label="팀원 모집" />
+        <Stat value={site.stats.completed} label="완성" />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-3">
+      <h2 class="text-lg font-bold">Banner, EmptyState</h2>
+      <Banner
+        title="내 프로젝트도 여기 올려 보세요"
+        description="VICO.md 하나와 PR 한 번이면 끝이에요."
+        actionLabel="등록 방법 보기"
+        actionHref="/join"
+      />
+      <EmptyState />
+    </section>
+  </main>
+</BaseLayout>
