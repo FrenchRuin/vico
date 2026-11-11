@@ -1,0 +1,41 @@
+# 모든 PR과 main push에서 타입 검사, Biome, 테스트, 빌드를 돌린다.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    # 3시간마다 오는 데이터 커밋에서는 돌지 않는다.
+    paths-ignore: [data/**]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check
+      - run: pnpm build
+
+  # 워크플로 문법 검사 (T16 완료 기준). 공식 이미지를 버전 고정으로 쓴다.
+  actionlint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker://rhysd/actionlint:1.7.12
+        with:
+          args: -color
