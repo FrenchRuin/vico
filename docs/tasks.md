@@ -12,7 +12,7 @@
   - `package.json`의 `engines.node`와 `.nvmrc`에 Node LTS 버전 고정 (Cloudflare Pages 빌드와 맞추기 위함)
   - CLAUDE.md의 폴더 구조대로 빈 폴더/파일 생성, `.gitignore`(`.env`, `dist`, `node_modules`), `.env.example`(`GITHUB_TOKEN=`)
   - `vico.config.ts` 작성 (spec.md 6절 값 그대로)
-  - Tailwind v4 `@theme`(`src/styles/global.css`)에 design.md 1절 토큰 등록, Google Fonts 로드
+  - Tailwind v4 `@theme`(`src/styles/global.css`)에 design.md 1절 토큰 등록, 글꼴 로드 (design.md 1절)
   - 완료 기준: `pnpm dev`로 빈 페이지가 뜨고 `pnpm check`, `pnpm build`가 통과
 
 - [x] **T02. 스키마와 타입 (`lib/schema.ts`)**

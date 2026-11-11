@@ -29,6 +29,7 @@
     "@tailwindcss/vite": "4.3.5",
     "astro": "7.4.10",
     "gray-matter": "4.0.3",
+    "pretendard": "1.3.9",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "tailwindcss": "4.3.5",

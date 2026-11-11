@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 
 /* 디자인 토큰 (docs/design.md 1절). 클래스 예: bg-bg, bg-surface, text-text-muted, border-border */
 @theme {
@@ -40,7 +41,8 @@
   --color-done-bar: #2f9e55;
 
   /* 글꼴 */
-  --font-sans: "IBM Plex Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-sans:
+    "Pretendard Variable", Pretendard, system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 
   /* 크기와 모양 */

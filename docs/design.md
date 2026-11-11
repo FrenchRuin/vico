@@ -47,9 +47,9 @@
 
 ### 글꼴
 
-- 본문: `IBM Plex Sans KR` (400, 500, 600, 700)
+- 본문: `Pretendard Variable` (400, 500, 600, 700). npm `pretendard` 패키지의 dynamic-subset CSS를 `global.css`에서 불러와 빌드에 포함한다 (Google Fonts에 없어서. 외부 CDN에 기대지 않기 위함)
 - 숫자, 아이디, 코드, 로고: `JetBrains Mono` (500, 700)
-- Google Fonts에서 불러온다.
+- `JetBrains Mono`는 Google Fonts에서 불러온다.
 
 ### 크기와 모양
 
