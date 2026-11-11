@@ -24,7 +24,7 @@ export function nextTaskText(project: Pick<ProjectView, 'total' | 'nextTask'>): 
 export function ProjectCard({ project, now }: ProjectCardProps) {
   const items = project.stages.flatMap((stage) => stage.items.map((item) => item.done));
   return (
-    <article className="relative flex flex-col gap-3 rounded-card border border-border bg-surface p-card transition-shadow hover:shadow-md has-[a:focus-visible]:ring-2 has-[a:focus-visible]:ring-accent">
+    <article className="relative flex flex-col gap-3 rounded-card border border-border bg-surface p-card transition-shadow hover:shadow-md has-[h3_a:focus-visible]:ring-2 has-[h3_a:focus-visible]:ring-accent">
       <div className="flex items-center justify-between gap-2">
         <a
           href={profilePath(project.owner)}

@@ -38,7 +38,7 @@ const markdown = badgeMarkdown(project);
 
 <BaseLayout title={`${project.title} — Vico`} description={project.summary}>
   <Header />
-  <main class="mx-auto flex max-w-narrow flex-col gap-6 px-gutter pt-6 pb-16">
+  <main id="main" tabindex="-1" class="outline-none mx-auto flex max-w-narrow flex-col gap-6 px-gutter pt-6 pb-16">
     <a href="/" class="inline-flex min-h-11 items-center self-start text-sm font-medium text-text-sub hover:underline">
       ← 프로젝트 목록
     </a>
@@ -55,7 +55,7 @@ const markdown = badgeMarkdown(project);
       </div>
       <img src={`/badge/${project.owner}/${project.repo}.svg`} alt={`Vico 진행률 ${project.progress}%`} height="20" class="h-5 self-start" />
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center">
-        <code class="min-w-0 flex-1 overflow-x-auto rounded-[10px] bg-deep px-4 py-3 font-mono text-xs whitespace-nowrap text-deep-text">{markdown}</code>
+        <code class="min-w-0 flex-1 rounded-[10px] bg-deep px-4 py-3 font-mono text-xs break-all text-deep-text">{markdown}</code>
         <CopyButton client:visible text={markdown} />
       </div>
     </section>

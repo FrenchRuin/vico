@@ -76,17 +76,17 @@ export function statusRows(config: Pick<VicoConfig, 'activeDays' | 'quietDays'>)
 
 export function StatusTable({ config }: { config: Pick<VicoConfig, 'activeDays' | 'quietDays'> }) {
   return (
-    <div className="overflow-x-auto rounded-section border border-border bg-surface">
-      <table className="w-full min-w-[480px] text-left text-sm">
+    <div className="overflow-hidden rounded-section border border-border bg-surface">
+      <table className="w-full text-left text-sm">
         <thead className="border-b border-border text-xs text-text-muted">
           <tr>
-            <th scope="col" className="px-5 py-3 font-semibold">
+            <th scope="col" className="px-3 py-3 font-semibold sm:px-5">
               상태
             </th>
-            <th scope="col" className="px-5 py-3 font-semibold">
+            <th scope="col" className="px-3 py-3 font-semibold sm:px-5">
               기준
             </th>
-            <th scope="col" className="px-5 py-3 font-semibold">
+            <th scope="col" className="px-3 py-3 font-semibold sm:px-5">
               어디에 보이나요
             </th>
           </tr>
@@ -94,11 +94,11 @@ export function StatusTable({ config }: { config: Pick<VicoConfig, 'activeDays' 
         <tbody>
           {statusRows(config).map((row) => (
             <tr key={row.status} className="border-b border-divider last:border-0">
-              <td className="px-5 py-3.5">
+              <td className="px-3 py-3.5 sm:px-5">
                 <StatusBadge status={row.status} />
               </td>
-              <td className="px-5 py-3.5">{row.rule}</td>
-              <td className="px-5 py-3.5 text-text-sub">{row.where}</td>
+              <td className="px-3 py-3.5 sm:px-5">{row.rule}</td>
+              <td className="px-3 py-3.5 text-text-sub sm:px-5">{row.where}</td>
             </tr>
           ))}
         </tbody>

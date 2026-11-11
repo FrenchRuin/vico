@@ -28,7 +28,7 @@ const remaining = Math.max(0, config.maxActivePerOwner - profile.ongoing.length)
 
 <BaseLayout title={`@${profile.owner} — Vico`} description={`@${profile.owner}의 Vico 프로젝트`}>
   <Header />
-  <main class="mx-auto flex max-w-narrow flex-col gap-10 px-gutter pt-8 pb-16">
+  <main id="main" tabindex="-1" class="outline-none mx-auto flex max-w-narrow flex-col gap-10 px-gutter pt-8 pb-16">
     <ProfileBanner profile={profile} maxActive={config.maxActivePerOwner} />
 
     <section aria-labelledby="ongoing-title" class="flex flex-col gap-4">
