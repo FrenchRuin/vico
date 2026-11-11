@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+/* 디자인 토큰 (docs/design.md 1절). 클래스 예: bg-bg, bg-surface, text-text-muted, border-border */
+@theme {
+  /* 기본 색 */
+  --color-bg: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-border: #e5e7eb;
+  --color-border-strong: #d1d5db;
+  --color-divider: #f0f1f3;
+  --color-muted: #f3f4f6;
+  --color-track: #eef0f3;
+  --color-step-empty: #e5e7eb;
+  --color-text: #111827;
+  --color-text-sub: #374151;
+  --color-text-muted: #4b5563;
+  --color-accent: #4f46e5;
+  --color-accent-text: #3b35c9;
+  --color-accent-soft: #eeedfe;
+  --color-accent-line: #c9c6f7;
+  --color-deep: #1e1b4b;
+  --color-deep-text: #d4d2fa;
+  --color-deep-label: #c7c4ff;
+  --color-deep-step: #a5b4fc;
+  --color-mint: #a5f3c4;
+  --color-star: #b7791f;
+
+  /* 상태 색: 글자 / 배경 / 진행률 */
+  --color-active-text: #14632b;
+  --color-active-bg: #e3f3e7;
+  --color-active-bar: #4f46e5;
+  --color-quiet-text: #7a4a00;
+  --color-quiet-bg: #fcefd6;
+  --color-quiet-bar: #9ca3af;
+  --color-dormant-text: #374151;
+  --color-dormant-bg: #eceef1;
+  --color-dormant-bar: #9ca3af;
+  --color-done-text: #23389e;
+  --color-done-bg: #e4ebfe;
+  --color-done-bar: #2f9e55;
+
+  /* 글꼴 */
+  --font-sans: "IBM Plex Sans KR", system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* 크기와 모양 */
+  --container-content: 1200px;
+  --container-narrow: 960px;
+  --radius-card: 14px;
+  --radius-section: 18px;
+  --spacing-card: 18px;
+  --spacing-gutter: 24px;
+  --spacing-touch: 44px;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
