@@ -23,7 +23,7 @@ import {
 
 const VICO_FILE = 'VICO.md';
 
-type Outcome =
+export type Outcome =
   | { kind: 'ok'; project: Project }
   | { kind: 'error'; reason: string; keepPrevious: boolean };
 
@@ -45,7 +45,8 @@ function latest(a: string, b: string): string {
   return new Date(a).getTime() >= new Date(b).getTime() ? a : b;
 }
 
-async function collectOne(
+/** 레포 하나를 읽어 Project를 만든다. validate도 이 함수로 검사한다. */
+export async function collectRepo(
   entry: string,
   github: GitHubClient,
   previous: Project | undefined,
@@ -151,7 +152,7 @@ export async function collect({
 
   const outcomes = await mapLimit(unique, concurrency, (entry) => {
     const ref = parseRepoEntry(entry);
-    return collectOne(entry, github, ref ? previousProjects.get(repoKey(ref)) : undefined, nowIso);
+    return collectRepo(entry, github, ref ? previousProjects.get(repoKey(ref)) : undefined, nowIso);
   });
 
   const projects: Project[] = [];

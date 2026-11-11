@@ -91,7 +91,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - GitHub API 호출 부분은 주입 가능하게 만들어 테스트에서 가짜 응답 사용
   - 완료 기준: 가짜 응답으로 정상/레포 없음/비공개/VICO.md 없음/frontmatter 오류/첫 수집 시 lastCompleted null/연속 실패 since 유지 테스트, 로컬에서 실제 레포 1~2개로 `pnpm collect` 성공
 
-- [ ] **T14. 등록 검증 `scripts/validate.ts`**
+- [x] **T14. 등록 검증 `scripts/validate.ts`**
   - spec.md 7절 A-03의 검사(0~7). base 브랜치의 projects.json과 비교해 새로 추가된 레포만 검사
   - 입력은 파일 경로 인자로 받는다 (`tsx scripts/validate.ts --base projects.json --head /tmp/pr-projects.json`). 워크플로가 base 코드로 PR의 projects.json만 읽게 하기 위함
   - 결과를 마크다운 표로 출력 (워크플로에서 PR 코멘트로 사용)
