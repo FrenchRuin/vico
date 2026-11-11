@@ -102,7 +102,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - 중복 이슈/PR 방지 (활동일 이후 만든 `[Vico]` 이슈가 닫혀 있어도 다시 열지 않음)
   - 완료 기준: dry-run 출력 테스트 (예시 데이터 + 고정된 now), 닫힌 리마인더가 있으면 건너뜀 테스트, 중단 프로젝트 정리 시점 테스트
 
-- [ ] **T16. GitHub Actions 워크플로**
+- [x] **T16. GitHub Actions 워크플로**
   - `ci.yml`: 모든 PR에서 `pnpm check` + `pnpm build`
   - `collect.yml`: cron `0 */3 * * *`, `projects.json` push, workflow_dispatch. 바뀐 경우만 `chore(data): update projects data` 커밋, `VICO_DEPLOY_KEY`로 push. concurrency 그룹 설정
   - `validate.yml`: `projects.json`을 바꾸는 pull_request. base 코드 체크아웃 + PR의 projects.json만 읽기, 결과를 artifact로 (spec.md A-03)
