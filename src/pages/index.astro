@@ -1,10 +1,73 @@
 ---
+import { getSiteData } from '../../lib/data';
+import { getHighlight } from '../../lib/similar';
+import { config } from '../../vico.config';
+import { Banner, Stat } from '../components/Blocks';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { HighlightCard } from '../components/HighlightCard';
+import { ProjectBrowser } from '../components/ProjectBrowser';
+import { RecruitCard } from '../components/RecruitCard';
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const now = new Date();
+const { projects, stats, generatedAt } = getSiteData(now);
+const highlight = getHighlight(projects, now);
+const recruiting = projects
+  .filter((p) => p.recruiting && p.status !== 'dormant')
+  .slice(0, config.recruitRowLimit);
 ---
 
 <BaseLayout>
-  <main class="mx-auto max-w-content px-gutter py-16">
-    <p class="font-mono text-2xl font-bold">vico<span class="text-accent">_</span></p>
-    <p class="mt-2 text-text-muted">준비 중이에요.</p>
+  <Header current="projects" />
+  <main class="mx-auto flex max-w-content flex-col gap-14 px-gutter pt-10 pb-16">
+    <section class:list={['grid gap-6', highlight && 'md:grid-cols-2']}>
+      <div class="flex flex-col justify-center gap-5">
+        <h1 class="text-[34px] leading-tight font-bold">지금 만들고 있는<br />바이브 코딩 프로젝트</h1>
+        <p class="text-text-sub">
+          오늘 <strong class="font-semibold text-text">{stats.inProgress}개</strong> 프로젝트가 진행 중이고,{' '}
+          <strong class="font-semibold text-text">{stats.recruiting}개</strong>가 같이 만들 사람을 찾고 있어요.
+        </p>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <Stat value={stats.registered} label="등록" />
+          <Stat value={stats.activeNow} label="지금 활발" />
+          <Stat value={stats.recruiting} label="팀원 모집" />
+          <Stat value={stats.completed} label="완성" />
+        </div>
+      </div>
+      {highlight && <HighlightCard project={highlight} now={now} />}
+    </section>
+
+    {
+      recruiting.length > 0 && (
+        <section aria-labelledby="recruit-title" class="flex flex-col gap-4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <h2 id="recruit-title" class="text-lg font-bold">같이 만들 사람을 찾고 있어요</h2>
+            <a
+              href="?tab=recruit#projects"
+              class="inline-flex min-h-11 items-center text-sm font-semibold text-accent-text hover:underline"
+            >
+              모집 중만 보기 →
+            </a>
+          </div>
+          <div class="grid gap-4 md:grid-cols-3">
+            {recruiting.map((project) => <RecruitCard project={project} />)}
+          </div>
+        </section>
+      )
+    }
+
+    <section id="projects" aria-labelledby="projects-title" class="flex scroll-mt-6 flex-col gap-4">
+      <h2 id="projects-title" class="text-lg font-bold">모든 프로젝트</h2>
+      <ProjectBrowser client:load projects={projects} nowIso={now.toISOString()} />
+    </section>
+
+    <Banner
+      title="내 프로젝트도 여기 올려 보세요"
+      description="VICO.md 하나와 PR 한 번이면 끝이에요."
+      actionLabel="등록 방법 보기"
+      actionHref="/join"
+    />
   </main>
+  <Footer generatedAt={generatedAt} />
 </BaseLayout>

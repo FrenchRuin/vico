@@ -11,6 +11,7 @@ export const config = {
   maxStepBarItems: 20, // 이보다 많으면 StepBar 대신 일반 진행률 바
   maxActivePerOwner: 3,
   similarLimit: 3, // 상세 하단 비슷한 프로젝트 최대 개수 (F-16)
+  recruitRowLimit: 3, // 메인 "같이 만들 사람을 찾고 있어요" 최대 개수
   minChecklistItems: 3,
   siteUrl: 'https://vico.pages.dev',
   repoUrl: 'https://github.com/{관리자}/vico', // 실제 주소로 교체

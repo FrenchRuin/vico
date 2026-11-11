@@ -15,12 +15,12 @@ function projectKey(project: Pick<Project, 'owner' | 'repo'>): string {
  * 도구가 겹치는 프로젝트. 자기 자신과 휴면 제외.
  * 겹치는 도구 수 내림차순 → 활동일 최신순, 최대 similarLimit개.
  */
-export function getSimilar(
+export function getSimilar<T extends Project>(
   project: Project,
-  all: readonly Project[],
+  all: readonly T[],
   now: Date,
   config: Pick<VicoConfig, 'activeDays' | 'quietDays' | 'similarLimit'> = defaultConfig,
-): Project[] {
+): T[] {
   const myTools = new Set(project.tools);
   const myKey = projectKey(project);
 
@@ -42,12 +42,12 @@ export function getSimilar(
  * 메인 상단 하이라이트. 휴면이 아니고 lastCompleted.at이 activeDays 이내인 프로젝트 중
  * lastCompleted.at이 가장 최근인 것. 없으면 null.
  */
-export function getHighlight(
-  all: readonly Project[],
+export function getHighlight<T extends Project>(
+  all: readonly T[],
   now: Date,
   config: Pick<VicoConfig, 'activeDays' | 'quietDays'> = defaultConfig,
-): Project | null {
-  let best: Project | null = null;
+): T | null {
+  let best: T | null = null;
   for (const project of all) {
     const at = project.lastCompleted?.at;
     if (!at) continue;

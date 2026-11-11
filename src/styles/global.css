@@ -60,11 +60,13 @@
     background-color: var(--color-bg);
     color: var(--color-text);
     font-family: var(--font-sans);
-    font-size: 15px;
     -webkit-font-smoothing: antialiased;
   }
 
+  /* 본문 15px은 body에만 준다. html에 주면 rem 단위(Tailwind 크기)가 전부 15/16로 줄어
+     44px 터치 영역이 41px이 된다. */
   body {
+    font-size: 15px;
     min-height: 100vh;
     overflow-x: hidden;
     background-color: var(--color-bg);

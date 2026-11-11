@@ -127,6 +127,7 @@ demo: https://example.com
 - **F-16 비슷한 프로젝트**: 자기 자신과 휴면 제외, 겹치는 도구 수 내림차순 → 활동일 최신순, 최대 3개. 겹치는 도구가 없으면 섹션을 숨긴다.
 - **F-14 뱃지**: 빌드 시 Astro 엔드포인트(`getStaticPaths`)로 정적 SVG 생성. 왼쪽 `vico`, 오른쪽 `{진행률}% · {상태}`. 상태별 색은 design.md. 마크다운: `[![vico](https://vico.pages.dev/badge/{owner}/{repo}.svg)](https://vico.pages.dev/p/{owner}/{repo})`.
 - **F-10 지금 활발**: 상태가 활발인 프로젝트 수 (기준이 14일이라 "이번 주"라고 부르지 않는다).
+- **F-04/F-05/F-09 URL 쿼리**: `?tab=ongoing|recruit|done|dormant&tool={도구 이름|other}&sort=recent|stars|progress&q={검색어}`. 기본값(진행중, 전체 도구, 최근 업데이트, 검색 없음)은 쿼리에서 뺀다. 모르는 값은 기본값으로 본다. 탭 개수는 도구와 검색 조건을 적용한 뒤의 개수. 스타순/진행률순은 같으면 최근 업데이트순.
 - **F-04 도구 칩**: 데이터에 있는 알려진 도구(`knownTools` 순서) + 알려지지 않은 도구가 하나라도 있으면 마지막에 "기타" 칩. 칩이 끝없이 늘어나는 것을 막기 위함.
 
 ## 6. 데이터
@@ -200,6 +201,7 @@ export const config = {
   maxStepBarItems: 20,          // 이보다 많으면 StepBar 대신 일반 진행률 바
   maxActivePerOwner: 3,
   similarLimit: 3,              // F-16 비슷한 프로젝트 최대 개수
+  recruitRowLimit: 3,           // 메인 모집 줄 최대 개수
   minChecklistItems: 3,
   siteUrl: 'https://vico.pages.dev',
   repoUrl: 'https://github.com/{관리자}/vico',   // 실제 주소로 교체

@@ -43,7 +43,8 @@ vico/
 │   ├── parse.ts             # VICO.md → 체크리스트, 단계, 다음 할 일
 │   ├── progress.ts          # 진행률 계산
 │   ├── status.ts            # 활발/잠잠/휴면/완료 판정
-│   ├── similar.ts           # 비슷한 프로젝트
+│   ├── similar.ts           # 비슷한 프로젝트, 하이라이트
+│   ├── filter.ts            # 메인 탭/도구/검색/정렬 규칙과 URL 쿼리
 │   └── data.ts              # 데이터 읽기 진입점 (사이트는 이것만 사용)
 ├── scripts/                 # GitHub Actions에서 실행
 │   ├── collect.ts
