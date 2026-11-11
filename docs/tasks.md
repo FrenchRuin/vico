@@ -73,7 +73,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - "projects.json 열기" 링크: `{config.repoUrl}/edit/main/projects.json`
   - 완료 기준: 템플릿을 고치면 페이지에도 반영됨
 
-- [ ] **T11. README 뱃지 `/badge/[owner]/[repo].svg`**
+- [x] **T11. README 뱃지 `/badge/[owner]/[repo].svg`**
   - design.md 3.5. Astro 엔드포인트 + `getStaticPaths`
   - 완료 기준: 상태 4종 SVG 스냅샷 테스트, 빌드 결과 `dist/badge/…svg` 생성
 

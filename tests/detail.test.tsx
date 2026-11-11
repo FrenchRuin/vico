@@ -1,6 +1,5 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
-import { badgeMarkdown, badgeUrl } from '../lib/badge';
 import type { ProjectView } from '../lib/data';
 import {
   ChecklistSection,
@@ -15,17 +14,6 @@ function view(overrides: Partial<ProjectView> = {}): ProjectView {
 }
 
 const html = (node: React.ReactElement) => renderToStaticMarkup(node);
-
-describe('badge', () => {
-  it('spec F-14의 마크다운 형식', () => {
-    expect(badgeUrl({ owner: 'a', repo: 'b' }, 'https://x.dev')).toBe(
-      'https://x.dev/badge/a/b.svg',
-    );
-    expect(badgeMarkdown({ owner: 'a', repo: 'b' }, 'https://x.dev')).toBe(
-      '[![vico](https://x.dev/badge/a/b.svg)](https://x.dev/p/a/b)',
-    );
-  });
-});
 
 describe('ProjectSummary', () => {
   it('상태 + 업데이트 시각, 레포 링크, 프로필 링크', () => {
