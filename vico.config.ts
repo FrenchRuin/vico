@@ -35,7 +35,7 @@ export const config = {
   collectConcurrency: 5, // collect 동시 요청 수
   apiRetries: 2, // GitHub API 실패 시 재시도 횟수
   siteUrl: 'https://vico.pages.dev',
-  repoUrl: 'https://github.com/{관리자}/vico', // 실제 주소로 교체
+  repoUrl: 'https://github.com/FrenchRuin/vico',
   discordUrl: '', // #팀원모집 채널 초대 링크
   knownTools: [
     'Claude Code',
