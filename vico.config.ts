@@ -2,6 +2,23 @@
  * Vico의 숫자 기준값과 사이트 설정. 기준값은 이 파일에만 둔다 (CLAUDE.md).
  * 값의 의미는 docs/spec.md 4절, 6절, 7절 참고.
  */
+export type VicoConfig = {
+  activeDays: number;
+  quietDays: number;
+  reminderDays: number;
+  removeAfterDormantDays: number;
+  removeAfterErrorDays: number;
+  maxStepBarItems: number;
+  maxActivePerOwner: number;
+  similarLimit: number;
+  recruitRowLimit: number;
+  minChecklistItems: number;
+  siteUrl: string;
+  repoUrl: string;
+  discordUrl: string;
+  knownTools: readonly string[];
+};
+
 export const config = {
   activeDays: 14,
   quietDays: 45,
@@ -27,6 +44,4 @@ export const config = {
     'Replit',
     'v0',
   ],
-} as const;
-
-export type VicoConfig = typeof config;
+} as const satisfies VicoConfig;

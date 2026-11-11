@@ -68,7 +68,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - design.md 3.3. 등록 프로젝트가 있는 아이디만 생성
   - 완료 기준: 진행중 3개인 아이디는 "하나 더 올리기" 카드가 없음
 
-- [ ] **T10. 참여하기 `/join`**
+- [x] **T10. 참여하기 `/join`**
   - design.md 3.4. 템플릿은 `templates/VICO.md` 파일 내용을 빌드 시 읽어서 표시 (복사본을 하드코딩하지 않음)
   - "projects.json 열기" 링크: `{config.repoUrl}/edit/main/projects.json`
   - 완료 기준: 템플릿을 고치면 페이지에도 반영됨

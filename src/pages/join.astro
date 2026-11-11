@@ -1,0 +1,86 @@
+---
+import { getSiteData, loadTemplate } from '../../lib/data';
+import { config } from '../../vico.config';
+import { Banner } from '../components/Blocks';
+import { CopyButton } from '../components/CopyButton';
+import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { CodeBlock, Faq, joinFaqItems, StatusTable, StepCard } from '../components/Join';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const { projects, generatedAt } = getSiteData();
+const template = loadTemplate();
+const sample = projects[0];
+const projectsJsonExample = `[
+  "github.com/minji-dev/community-hot",
+  "github.com/내아이디/내레포"
+]`;
+const checks = [
+  'VICO.md가 있고 형식이 맞아요',
+  `체크리스트 항목이 ${config.minChecklistItems}개 이상이에요`,
+  '공개 레포예요',
+  `내 아이디의 진행중 프로젝트가 ${config.maxActivePerOwner}개 이하예요`,
+];
+---
+
+<BaseLayout title="프로젝트 등록하기 — Vico" description="VICO.md 하나와 PR 한 번으로 Vico에 프로젝트를 올리는 방법">
+  <Header current="join" />
+  <main class="mx-auto flex max-w-narrow flex-col gap-10 px-gutter pt-10 pb-16">
+    <section class="flex flex-col gap-3">
+      <h1 class="text-[34px] leading-tight font-bold">세 단계면 등록 끝</h1>
+      <p class="text-text-sub">회원가입은 없어요. 레포에 VICO.md를 두고, 명단에 한 줄을 추가하는 PR만 보내면 돼요.</p>
+    </section>
+
+    <ol class="flex flex-col gap-4">
+      <StepCard step={1} title="레포 루트에 VICO.md 만들기">
+        <p class="text-sm text-text-sub">아래 템플릿을 복사해서 레포 맨 위 폴더에 <code class="font-mono">VICO.md</code>로 저장하고 내용을 채워 주세요.</p>
+        <CodeBlock code={template} label="VICO.md 템플릿" />
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <p class="text-[13px] text-text-muted">contact에는 디스코드 아이디나 오픈카톡 링크만 적어 주세요. 적은 연락처는 공개 레포와 Vico에 공개돼요.</p>
+          <CopyButton client:visible text={template} label="VICO.md 템플릿 복사" />
+        </div>
+      </StepCard>
+
+      <StepCard step={2} title="projects.json에 레포 주소 추가해서 PR 보내기">
+        <p class="text-sm text-text-sub">이 레포의 <code class="font-mono">projects.json</code> 맨 끝에 내 레포 주소를 한 줄 추가해요. <code class="font-mono">https://</code>와 끝의 <code class="font-mono">/</code>는 빼 주세요.</p>
+        <CodeBlock code={projectsJsonExample} label="projects.json 예시" />
+        <a
+          href={`${config.repoUrl}/edit/main/projects.json`}
+          class="inline-flex min-h-11 items-center self-start rounded-[10px] bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-text"
+        >
+          projects.json 열기
+        </a>
+      </StepCard>
+
+      <StepCard step={3} title="자동 검사를 통과하면 승인 후 3시간 안에 등장">
+        <ul class="grid gap-2 sm:grid-cols-2">
+          {
+            checks.map((check) => (
+              <li class="flex items-start gap-2 text-sm">
+                <span aria-hidden="true" class="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-[4px] bg-active-bg text-[11px] font-bold text-active-text">✓</span>
+                {check}
+              </li>
+            ))
+          }
+        </ul>
+        <p class="text-[13px] text-text-muted">처음 PR을 보내면 관리자가 검사 실행을 승인한 뒤에 결과가 PR 코멘트로 달려요.</p>
+      </StepCard>
+    </ol>
+
+    <Banner title="등록하면 README 뱃지도 생겨요" description="상세 페이지에서 마크다운 코드를 복사해 README에 붙이면, 진행률과 상태가 자동으로 바뀌어요.">
+      {sample && <img src={`/badge/${sample.owner}/${sample.repo}.svg`} alt="Vico 뱃지 예시" height="20" class="mt-4 h-5" />}
+    </Banner>
+
+    <section aria-labelledby="status-title" class="flex flex-col gap-4">
+      <h2 id="status-title" class="text-lg font-bold">활동 상태</h2>
+      <p class="text-sm text-text-sub">업데이트는 레포의 마지막 커밋이나 VICO.md를 고친 시각 중 더 최근 것을 기준으로 해요.</p>
+      <StatusTable config={config} />
+    </section>
+
+    <section aria-labelledby="faq-title" class="flex flex-col gap-4">
+      <h2 id="faq-title" class="text-lg font-bold">자주 묻는 질문</h2>
+      <Faq items={joinFaqItems(config)} />
+    </section>
+  </main>
+  <Footer generatedAt={generatedAt} />
+</BaseLayout>

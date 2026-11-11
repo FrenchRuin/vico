@@ -99,6 +99,11 @@ export function buildSiteData(
   return { source, generatedAt: data.generatedAt, projects, stats: computeStats(projects) };
 }
 
+/** 참여자용 VICO.md 템플릿 원문 (/join에서 그대로 보여준다). */
+export function loadTemplate(path: string = join(process.cwd(), 'templates', 'VICO.md')): string {
+  return readFileSync(path, 'utf8').replace(/\r\n/g, '\n');
+}
+
 /** 페이지에서 쓰는 진입점. */
 export function getSiteData(now: Date = new Date()): SiteData {
   const { source, data } = loadData(now);
