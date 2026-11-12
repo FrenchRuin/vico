@@ -67,7 +67,7 @@ describe('ProjectCard', () => {
     expect(html).toContain('href="/p/minji/app"');
     expect(html).toContain('href="/u/minji"');
     expect(html).toContain('활발 · 오늘');
-    expect(html).toContain('50%');
+    expect(html).toMatch(/>50<span[^>]*>%</);
   });
 
   it('휴면이면 모집 중이어도 모집 뱃지를 숨긴다', () => {

@@ -30,7 +30,7 @@ export function StepBar({
       <div
         role="img"
         aria-label={label}
-        className={`h-1.5 w-full overflow-hidden rounded-full ${onDeep ? 'bg-white/15' : 'bg-track'}`}
+        className={`h-2 w-full overflow-hidden rounded-full ${onDeep ? 'bg-white/15' : 'bg-track'}`}
       >
         <div className={`h-full rounded-full ${doneClass}`} style={{ width: `${percent}%` }} />
       </div>
@@ -38,7 +38,7 @@ export function StepBar({
   }
 
   return (
-    <div role="img" aria-label={label} className="flex h-1.5 w-full gap-[3px]">
+    <div role="img" aria-label={label} className="flex h-2 w-full gap-[3px]">
       {items.map((isDone, index) => (
         <span
           // 칸은 순서가 곧 정체성이라 index를 키로 쓴다.

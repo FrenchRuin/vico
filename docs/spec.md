@@ -124,6 +124,7 @@ demo: https://example.com
   - 이전 데이터에 그 프로젝트가 없으면(첫 수집) `lastCompleted`는 `null`. 이미 체크된 항목이 전부 "방금 완료"로 잡히는 것을 막기 위함.
   - 새로 체크된 항목이 없으면 이전 값을 유지한다.
   - 하이라이트 대상: 휴면이 아니고 `lastCompleted.at`이 `activeDays` 이내인 프로젝트 중 `lastCompleted.at`이 가장 최근인 것. 방금 100%를 찍어 완료가 된 프로젝트도 포함된다. 없으면 하이라이트 영역을 숨긴다.
+  - 방금 체크한 항목 띠 (2026-11-12 디자인 변경으로 추가, 새 데이터 없이 `lastCompleted`만 씀): 휴면이 아니고 `lastCompleted`가 있는 프로젝트를 `lastCompleted.at` 최근순으로 최대 `checkedStripLimit`개. 기간 제한 없음.
 - **F-16 비슷한 프로젝트**: 자기 자신과 휴면 제외, 겹치는 도구 수 내림차순 → 활동일 최신순, 최대 3개. 겹치는 도구가 없으면 섹션을 숨긴다.
 - **F-14 뱃지**: 빌드 시 Astro 엔드포인트(`getStaticPaths`)로 정적 SVG 생성. 왼쪽 `vico`, 오른쪽 `{진행률}% · {상태}`. 상태별 색은 design.md. 마크다운: `[![vico]({siteUrl}/badge/{owner}/{repo}.svg)]({siteUrl}/p/{owner}/{repo})`.
 - **F-10 지금 활발**: 상태가 활발인 프로젝트 수 (기준이 14일이라 "이번 주"라고 부르지 않는다).
@@ -201,7 +202,8 @@ export const config = {
   maxStepBarItems: 20,          // 이보다 많으면 StepBar 대신 일반 진행률 바
   maxActivePerOwner: 3,
   similarLimit: 3,              // F-16 비슷한 프로젝트 최대 개수
-  recruitRowLimit: 3,           // 메인 모집 줄 최대 개수
+  overviewProjectTiles: 2,      // 메인 타일 묶음의 프로젝트 타일 최대 개수 (하이라이트 + 모집)
+  checkedStripLimit: 8,         // 메인 "방금 체크한 항목" 띠 최대 개수
   minChecklistItems: 3,
   collectConcurrency: 5,        // collect 동시 요청 수
   apiRetries: 2,                // GitHub API 실패 시 재시도 횟수

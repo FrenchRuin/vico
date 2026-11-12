@@ -123,6 +123,11 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - 관리자 본인 레포 1~2개를 `projects.json`에 넣고 collect → build → 화면 확인
   - 완료 기준: 실제 데이터로 메인, 상세, 프로필, 뱃지가 모두 정상
 
+- [x] **T19. 인디고 나이트 디자인** (2026-11-12, 첫 테마가 밋밋하다는 의견으로 추가)
+  - design.md 1절 토큰을 다크 값으로 교체, 메인을 3.1의 새 구성(Hero, CheckedStrip, Overview, FinalCta)으로 변경
+  - `lib/similar.ts`에 `getRecentlyChecked`, `getOverviewProjects` 추가, config `recruitRowLimit` → `overviewProjectTiles`, `checkedStripLimit`
+  - 완료 기준: 예시 데이터와 실제 데이터로 메인, 상세, 프로필, 참여하기가 다크 테마로 보이고 가로 스크롤이 없음
+
 ## 사람이 직접 해야 하는 일 (Claude Code가 하지 않음)
 
 - [x] GitHub에 `vico` 레포 생성, main에 Ruleset 설정 (PR 필수, ci 통과 필수, **bypass 목록에 "Deploy keys" 추가**)

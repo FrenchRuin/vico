@@ -37,7 +37,7 @@ export function ProjectCard({ project, now }: ProjectCardProps) {
       </div>
 
       <div className="flex items-start gap-2">
-        <h3 className="min-w-0 text-[17px] font-bold leading-snug">
+        <h3 className="min-w-0 text-xl leading-snug font-extrabold tracking-[-0.02em]">
           <a
             href={projectPath(project)}
             className="outline-none after:absolute after:inset-0 after:rounded-card after:content-['']"
@@ -54,12 +54,23 @@ export function ProjectCard({ project, now }: ProjectCardProps) {
 
       <p className="line-clamp-2 min-h-10 text-sm leading-5 text-text-muted">{project.summary}</p>
 
+      <div className="flex items-baseline justify-between gap-3">
+        <span
+          className={`font-mono text-4xl leading-none font-extrabold tracking-[-0.04em] ${
+            project.status === 'active' ? 'text-accent-text' : 'text-text-muted'
+          }`}
+        >
+          {project.progress}
+          <span className="text-lg">%</span>
+        </span>
+        <span className="font-mono text-xs text-text-muted">
+          {project.done} / {project.total} 완료
+        </span>
+      </div>
+
       <StepBar items={items} status={project.status} />
 
-      <div className="flex items-baseline justify-between gap-3 text-[13px]">
-        <span className="min-w-0 truncate text-text-sub">{nextTaskText(project)}</span>
-        <span className="font-mono font-bold">{project.progress}%</span>
-      </div>
+      <p className="min-w-0 truncate text-[13px] text-text-sub">{nextTaskText(project)}</p>
 
       <div className="mt-auto flex items-center justify-between gap-3 border-t border-divider pt-3">
         <div className="flex min-w-0 flex-wrap gap-1.5">

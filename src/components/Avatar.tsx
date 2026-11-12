@@ -1,11 +1,11 @@
 /** 아바타 색 (배경, 글자). docs/design.md 1절. */
 export const AVATAR_COLORS: readonly (readonly [string, string])[] = [
-  ['#EEEDFE', '#3B35C9'],
-  ['#E3F3E7', '#14632B'],
-  ['#FCEFD6', '#7A4A00'],
-  ['#E4EBFE', '#23389E'],
-  ['#FDE7EF', '#9D174D'],
-  ['#E0F2F1', '#115E59'],
+  ['#2B2870', '#C7C4FF'],
+  ['#133A2E', '#A5F3C4'],
+  ['#3A2C12', '#F5C77E'],
+  ['#232C6B', '#A5B4FC'],
+  ['#3D1630', '#F9A8D4'],
+  ['#0F3534', '#99F6E4'],
 ];
 
 /** 아이디 문자열 해시로 색을 고정 배정한다 (대소문자 무시). */
@@ -34,7 +34,7 @@ type AvatarProps = {
 };
 
 export function Avatar({ id, size = 28 }: AvatarProps) {
-  const [background, color] = AVATAR_COLORS[avatarColorIndex(id)] ?? ['#F3F4F6', '#374151'];
+  const [background, color] = AVATAR_COLORS[avatarColorIndex(id)] ?? ['#24215A', '#D4D2FA'];
   return (
     <span
       aria-hidden="true"

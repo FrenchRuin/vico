@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getHighlight, getSimilar } from '../lib/similar';
+import { getHighlight, getOverviewProjects, getRecentlyChecked, getSimilar } from '../lib/similar';
 import { ago, makeProject, NOW } from './fixtures';
 
 describe('getSimilar', () => {
@@ -79,5 +79,68 @@ describe('getHighlight', () => {
 
   it('대상이 없으면 null', () => {
     expect(getHighlight([], NOW)).toBeNull();
+  });
+});
+
+describe('getRecentlyChecked', () => {
+  const config = { activeDays: 14, quietDays: 45, checkedStripLimit: 2 };
+
+  it('lastCompleted.at 최근순, 최대 checkedStripLimit개', () => {
+    const all = [
+      makeProject({ repo: 'a', lastCompleted: { text: 'x', at: ago(3) } }),
+      makeProject({ repo: 'b', lastCompleted: { text: 'y', at: ago(1) } }),
+      makeProject({ repo: 'c', lastCompleted: { text: 'z', at: ago(2) } }),
+    ];
+    expect(getRecentlyChecked(all, NOW, config).map((p) => p.repo)).toEqual(['b', 'c']);
+  });
+
+  it('완료 기록이 없거나 휴면이면 제외하고, 오래된 기록은 포함', () => {
+    const all = [
+      makeProject({ repo: 'none', lastCompleted: null }),
+      makeProject({
+        repo: 'stop',
+        declaredStatus: '중단',
+        lastCompleted: { text: 'x', at: ago(0) },
+      }),
+      makeProject({
+        repo: 'old',
+        lastCompleted: { text: 'x', at: ago(30) },
+        vicoUpdatedAt: ago(1),
+        activityAt: ago(1),
+      }),
+    ];
+    expect(getRecentlyChecked(all, NOW, config).map((p) => p.repo)).toEqual(['old']);
+  });
+});
+
+describe('getOverviewProjects', () => {
+  const config = { activeDays: 14, quietDays: 45, overviewProjectTiles: 2 };
+
+  it('하이라이트 다음 자리는 모집 프로젝트(최근 활동순, 하이라이트와 휴면 제외)로 채운다', () => {
+    const hot = makeProject({
+      repo: 'hot',
+      recruiting: true,
+      lastCompleted: { text: 'x', at: ago(0) },
+    });
+    const all = [
+      hot,
+      makeProject({ repo: 'r-old', recruiting: true, activityAt: ago(5) }),
+      makeProject({ repo: 'r-new', recruiting: true, activityAt: ago(1) }),
+      makeProject({ repo: 'r-stop', recruiting: true, declaredStatus: '중단' }),
+    ];
+    const result = getOverviewProjects(all, NOW, config);
+    expect(result.highlight?.repo).toBe('hot');
+    expect(result.recruiting.map((p) => p.repo)).toEqual(['r-new']);
+  });
+
+  it('하이라이트가 없으면 모집 프로젝트로 모든 자리를 채운다', () => {
+    const all = [
+      makeProject({ repo: 'r1', recruiting: true, activityAt: ago(1) }),
+      makeProject({ repo: 'r2', recruiting: true, activityAt: ago(2) }),
+      makeProject({ repo: 'r3', recruiting: true, activityAt: ago(3) }),
+    ];
+    const result = getOverviewProjects(all, NOW, config);
+    expect(result.highlight).toBeNull();
+    expect(result.recruiting.map((p) => p.repo)).toEqual(['r1', 'r2']);
   });
 });

@@ -27,7 +27,7 @@ export function ProfileBanner({ profile, maxActive }: ProfileBannerProps) {
     [String(profile.totalStars), '받은 스타'],
   ];
   return (
-    <section className="flex flex-col gap-6 rounded-section bg-deep p-6 text-white sm:flex-row sm:items-center sm:justify-between">
+    <section className="flex flex-col gap-6 rounded-section border border-border bg-deep p-6 text-white sm:flex-row sm:items-center sm:justify-between">
       <div className="flex items-center gap-5">
         <Avatar id={profile.owner} size={80} />
         <div className="flex min-w-0 flex-col gap-1">
