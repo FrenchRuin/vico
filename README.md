@@ -27,6 +27,8 @@
 corepack enable
 ```
 
+Windows에서 Node가 `C:\Program Files`에 깔려 있으면 `corepack enable`이 권한 오류(EPERM)를 낼 수 있어요. 관리자 터미널에서 다시 하거나, 대신 `npm install -g pnpm`으로 설치해요.
+
 ### 실행
 
 ```sh
