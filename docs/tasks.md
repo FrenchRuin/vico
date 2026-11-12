@@ -114,7 +114,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
 
 ## 단계 4. 배포와 마무리
 
-- [ ] **T17. 배포 문서와 README**
+- [x] **T17. 배포 문서와 README**
   - README.md: Vico 소개, 참여 방법 요약(→ /join), 로컬 개발 방법, Secrets, Cloudflare Pages 설정(빌드 명령 `pnpm build`, 출력 `dist`, Node 버전)
   - `templates/VICO.md` 최종 확인
   - 완료 기준: README만 보고 새 PC에서 `pnpm dev`까지 가능
