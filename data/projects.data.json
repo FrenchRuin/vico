@@ -1,0 +1,101 @@
+{
+  "generatedAt": "2026-11-12T03:39:28.274Z",
+  "projects": [
+    {
+      "owner": "FrenchRuin",
+      "repo": "woori-weather",
+      "url": "https://github.com/FrenchRuin/woori-weather",
+      "title": "우리동네 날씨",
+      "summary": "날씨 예보에 동네 사람들의 체감 투표와 한마디를 더한 웹",
+      "tools": [
+        "Claude Code"
+      ],
+      "declaredStatus": "진행중",
+      "recruiting": false,
+      "lookingFor": [],
+      "contact": null,
+      "demo": "https://woori-weather.vercel.app",
+      "stages": [
+        {
+          "name": "기획",
+          "items": [
+            {
+              "text": "스펙 정리 (SPEC.md)",
+              "done": true
+            },
+            {
+              "text": "화면 디자인",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "개발",
+          "items": [
+            {
+              "text": "프로젝트 세팅",
+              "done": true
+            },
+            {
+              "text": "DB (테이블·트리거·RLS)",
+              "done": true
+            },
+            {
+              "text": "카카오 로그인 + 온보딩",
+              "done": true
+            },
+            {
+              "text": "기상청 날씨",
+              "done": true
+            },
+            {
+              "text": "체감 투표",
+              "done": true
+            },
+            {
+              "text": "동네 한마디",
+              "done": true
+            },
+            {
+              "text": "신고 + 내 정보",
+              "done": true
+            },
+            {
+              "text": "이웃 동네 지도",
+              "done": true
+            }
+          ]
+        },
+        {
+          "name": "출시",
+          "items": [
+            {
+              "text": "Vercel 배포",
+              "done": true
+            },
+            {
+              "text": "실제 폰에서 전체 흐름 확인",
+              "done": false
+            },
+            {
+              "text": "보안 정리 (Supabase 액세스 토큰 회수)",
+              "done": false
+            }
+          ]
+        }
+      ],
+      "done": 11,
+      "total": 13,
+      "progress": 85,
+      "nextTask": "실제 폰에서 전체 흐름 확인",
+      "lastCompleted": null,
+      "stars": 0,
+      "language": "HTML",
+      "lastCommitAt": "2026-11-12T00:36:47Z",
+      "vicoUpdatedAt": "2026-11-12T00:36:47Z",
+      "activityAt": "2026-11-12T00:36:47Z",
+      "registeredAt": "2026-11-12T03:39:28.274Z"
+    }
+  ],
+  "errors": []
+}
