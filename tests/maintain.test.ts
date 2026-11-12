@@ -1,4 +1,3 @@
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { loadData } from '../lib/data';
 import type { ProjectsData } from '../lib/schema';
@@ -11,7 +10,7 @@ import {
   reminderTitle,
   runMaintenance,
 } from '../scripts/maintain';
-import { ago, makeProject, NOW } from './fixtures';
+import { ago, makeProject, NOW, sampleOnlyDataDir } from './fixtures';
 
 function data(
   projects: ProjectsData['projects'],
@@ -95,7 +94,7 @@ describe('planMaintenance: 정리', () => {
 
 describe('runMaintenance: dry-run', () => {
   it('예시 데이터 + 고정된 now로 할 일만 출력한다', async () => {
-    const { data: sample } = loadData(NOW, join(process.cwd(), 'data'));
+    const { data: sample } = loadData(NOW, sampleOnlyDataDir());
     const plan = planMaintenance(sample, entriesOf(sample), NOW);
     expect(await runMaintenance(plan, { apply: false })).toEqual([
       '[dry-run] 실제로는 아무것도 하지 않아요',

@@ -1,4 +1,17 @@
+import { copyFileSync, mkdtempSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import type { Project } from '../lib/schema';
+
+/**
+ * sample.data.json만 들어 있는 임시 data 폴더.
+ * 실제 data/에 수집 데이터(projects.data.json)가 있어도 예시 데이터로 테스트하기 위함.
+ */
+export function sampleOnlyDataDir(): string {
+  const dir = mkdtempSync(join(tmpdir(), 'vico-sample-'));
+  copyFileSync(join(process.cwd(), 'data', 'sample.data.json'), join(dir, 'sample.data.json'));
+  return dir;
+}
 
 export const NOW = new Date('2026-11-11T12:00:00.000Z');
 const DAY = 24 * 60 * 60 * 1000;
