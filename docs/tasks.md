@@ -119,7 +119,7 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - `templates/VICO.md` 최종 확인
   - 완료 기준: README만 보고 새 PC에서 `pnpm dev`까지 가능
 
-- [ ] **T18. 첫 실제 데이터로 점검**
+- [x] **T18. 첫 실제 데이터로 점검**
   - 관리자 본인 레포 1~2개를 `projects.json`에 넣고 collect → build → 화면 확인
   - 완료 기준: 실제 데이터로 메인, 상세, 프로필, 뱃지가 모두 정상
 
