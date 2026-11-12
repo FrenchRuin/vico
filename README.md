@@ -99,7 +99,7 @@ Cloudflare 대시보드 → Workers & Pages → Create → Pages → Connect to 
 
 | 이름 | 쓰는 곳 | 만드는 법 |
 | --- | --- | --- |
-| `VICO_BOT_TOKEN` | collect, maintain | 봇 계정(`vico-bot`)의 **classic PAT, `public_repo` 스코프만**. 남의 레포에 이슈를 열어야 해서 fine-grained 토큰은 안 돼요. 봇 계정을 이 레포에 Write 협업자로 초대해 주세요 |
+| `VICO_BOT_TOKEN` | collect, maintain | 봇 계정(`vico-bot-kr`)의 **classic PAT, `public_repo` 스코프만**. 남의 레포에 이슈를 열어야 해서 fine-grained 토큰은 안 돼요. 봇 계정을 이 레포에 Write 협업자로 초대해 주세요 |
 | `VICO_DEPLOY_KEY` | collect | `ssh-keygen -t ed25519 -C vico-collect -f vico_deploy -N ""`로 만든 **개인 키** 내용. 공개 키(`vico_deploy.pub`)는 Settings → Deploy keys에 **Allow write access**로 등록 |
 | `CF_DEPLOY_HOOK_URL` | maintain | Cloudflare Pages → 프로젝트 → Settings → Builds → Deploy hooks에서 만든 주소. 없으면 매일 다시 빌드만 건너뛰어요 |
 

@@ -142,9 +142,9 @@ export function joinFaqItems(
       question: '봇이 이슈를 열었어요',
       answer: (
         <>
-          {config.reminderDays}일 동안 업데이트가 없으면 vico-bot이 알림 이슈를 한 번 열어요. 닫아도
-          되고, 다시 업데이트하면 알림 주기가 초기화돼요. 레포의 이슈 기능을 꺼 두면 알림을 받지
-          않아요.
+          {config.reminderDays}일 동안 업데이트가 없으면 vico-bot-kr이 알림 이슈를 한 번 열어요.
+          닫아도 되고, 다시 업데이트하면 알림 주기가 초기화돼요. 레포의 이슈 기능을 꺼 두면 알림을
+          받지 않아요.
         </>
       ),
     },
