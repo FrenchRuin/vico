@@ -32,7 +32,7 @@ export function ProfileBanner({ profile, maxActive }: ProfileBannerProps) {
         <Avatar id={profile.owner} size={80} />
         <div className="flex min-w-0 flex-col gap-1">
           <h1 className="truncate font-mono text-2xl font-bold">@{profile.owner}</h1>
-          <p className="text-sm text-deep-text">
+          <p className="text-[15px] text-deep-text">
             {formatMonth(profile.since)}부터 Vico에서 만드는 중
           </p>
         </div>
@@ -43,7 +43,7 @@ export function ProfileBanner({ profile, maxActive }: ProfileBannerProps) {
             <div key={label} className="rounded-card bg-white/10 px-4 py-2.5">
               <dt className="sr-only">{label}</dt>
               <dd className="font-mono text-[22px] font-bold leading-tight">{value}</dd>
-              <dd aria-hidden="true" className="text-xs text-deep-text">
+              <dd aria-hidden="true" className="text-[13px] text-deep-text">
                 {label}
               </dd>
             </div>
@@ -51,7 +51,7 @@ export function ProfileBanner({ profile, maxActive }: ProfileBannerProps) {
         </dl>
         <a
           href={`https://github.com/${profile.owner}`}
-          className="inline-flex min-h-11 items-center justify-center rounded-[10px] bg-white px-4 text-sm font-semibold text-deep hover:bg-deep-text"
+          className="inline-flex min-h-11 items-center justify-center rounded-[10px] bg-white px-4 text-[15px] font-semibold text-deep hover:bg-deep-text"
         >
           GitHub 프로필
         </a>
@@ -68,7 +68,7 @@ export function AddProjectCard({ remaining }: { remaining: number }) {
       className="flex min-h-48 flex-col items-center justify-center gap-1 rounded-card border-2 border-dashed border-border-strong p-card text-center hover:border-accent hover:bg-surface"
     >
       <span className="font-bold text-accent-text">프로젝트 하나 더 올리기</span>
-      <span className="text-sm text-text-muted">{remaining}자리 남았어요</span>
+      <span className="text-[15px] text-text-muted">{remaining}자리 남았어요</span>
     </a>
   );
 }
@@ -84,8 +84,8 @@ export function CompactProjectRow({ project }: { project: ProjectView }) {
         <span className="font-bold">{project.title}</span>
         <StatusBadge status={project.status} />
       </span>
-      <span className="min-w-0 flex-1 truncate text-sm text-text-muted">{project.summary}</span>
-      <span className="shrink-0 font-mono text-[13px] text-text-sub">
+      <span className="min-w-0 flex-1 truncate text-[15px] text-text-muted">{project.summary}</span>
+      <span className="shrink-0 font-mono text-sm text-text-sub">
         <span aria-hidden="true" className="text-star">
           ★
         </span>

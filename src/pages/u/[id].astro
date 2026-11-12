@@ -32,7 +32,7 @@ const remaining = Math.max(0, config.maxActivePerOwner - profile.ongoing.length)
     <ProfileBanner profile={profile} maxActive={config.maxActivePerOwner} />
 
     <section aria-labelledby="ongoing-title" class="flex flex-col gap-4">
-      <h2 id="ongoing-title" class="text-lg font-bold">진행중인 프로젝트</h2>
+      <h2 id="ongoing-title" class="text-xl font-bold">진행중인 프로젝트</h2>
       <div class="grid gap-4 sm:grid-cols-2">
         {profile.ongoing.map((project) => <ProjectCard project={project} now={now} />)}
         {remaining > 0 && <AddProjectCard remaining={remaining} />}
@@ -42,7 +42,7 @@ const remaining = Math.max(0, config.maxActivePerOwner - profile.ongoing.length)
     {
       profile.done.length > 0 && (
         <section aria-labelledby="done-title" class="flex flex-col gap-3">
-          <h2 id="done-title" class="text-lg font-bold">완성작</h2>
+          <h2 id="done-title" class="text-xl font-bold">완성작</h2>
           {profile.done.map((project) => <CompactProjectRow project={project} />)}
         </section>
       )

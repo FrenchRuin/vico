@@ -33,20 +33,20 @@ const checks = [
 
     <ol class="flex flex-col gap-4">
       <StepCard step={1} title="레포 루트에 VICO.md 만들기">
-        <p class="text-sm text-text-sub">아래 템플릿을 복사해서 레포 맨 위 폴더에 <code class="font-mono">VICO.md</code>로 저장하고 내용을 채워 주세요.</p>
+        <p class="text-[15px] text-text-sub">아래 템플릿을 복사해서 레포 맨 위 폴더에 <code class="font-mono">VICO.md</code>로 저장하고 내용을 채워 주세요.</p>
         <CodeBlock code={template} label="VICO.md 템플릿" />
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <p class="text-[13px] text-text-muted">contact에는 디스코드 아이디나 오픈카톡 링크만 적어 주세요. 적은 연락처는 공개 레포와 Vico에 공개돼요.</p>
+          <p class="text-sm text-text-muted">contact에는 디스코드 아이디나 오픈카톡 링크만 적어 주세요. 적은 연락처는 공개 레포와 Vico에 공개돼요.</p>
           <CopyButton client:visible text={template} label="VICO.md 템플릿 복사" />
         </div>
       </StepCard>
 
       <StepCard step={2} title="projects.json에 레포 주소 추가해서 PR 보내기">
-        <p class="text-sm text-text-sub">이 레포의 <code class="font-mono">projects.json</code> 맨 끝에 내 레포 주소를 한 줄 추가해요. <code class="font-mono">https://</code>와 끝의 <code class="font-mono">/</code>는 빼 주세요.</p>
+        <p class="text-[15px] text-text-sub">이 레포의 <code class="font-mono">projects.json</code> 맨 끝에 내 레포 주소를 한 줄 추가해요. <code class="font-mono">https://</code>와 끝의 <code class="font-mono">/</code>는 빼 주세요.</p>
         <CodeBlock code={projectsJsonExample} label="projects.json 예시" />
         <a
           href={`${config.repoUrl}/edit/main/projects.json`}
-          class="inline-flex min-h-11 items-center self-start rounded-[10px] bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-hover"
+          class="inline-flex min-h-11 items-center self-start rounded-[10px] bg-accent px-4 text-[15px] font-semibold text-white hover:bg-accent-hover"
         >
           projects.json 열기
         </a>
@@ -56,14 +56,14 @@ const checks = [
         <ul class="grid gap-2 sm:grid-cols-2">
           {
             checks.map((check) => (
-              <li class="flex items-start gap-2 text-sm">
+              <li class="flex items-start gap-2 text-[15px]">
                 <span aria-hidden="true" class="mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-[4px] bg-active-bg text-[11px] font-bold text-active-text">✓</span>
                 {check}
               </li>
             ))
           }
         </ul>
-        <p class="text-[13px] text-text-muted">처음 PR을 보내면 관리자가 검사 실행을 승인한 뒤에 결과가 PR 코멘트로 달려요.</p>
+        <p class="text-sm text-text-muted">처음 PR을 보내면 관리자가 검사 실행을 승인한 뒤에 결과가 PR 코멘트로 달려요.</p>
       </StepCard>
     </ol>
 
@@ -72,13 +72,13 @@ const checks = [
     </Banner>
 
     <section aria-labelledby="status-title" class="flex flex-col gap-4">
-      <h2 id="status-title" class="text-lg font-bold">활동 상태</h2>
-      <p class="text-sm text-text-sub">업데이트는 레포의 마지막 커밋이나 VICO.md를 고친 시각 중 더 최근 것을 기준으로 해요.</p>
+      <h2 id="status-title" class="text-xl font-bold">활동 상태</h2>
+      <p class="text-[15px] text-text-sub">업데이트는 레포의 마지막 커밋이나 VICO.md를 고친 시각 중 더 최근 것을 기준으로 해요.</p>
       <StatusTable config={config} />
     </section>
 
     <section aria-labelledby="faq-title" class="flex flex-col gap-4">
-      <h2 id="faq-title" class="text-lg font-bold">자주 묻는 질문</h2>
+      <h2 id="faq-title" class="text-xl font-bold">자주 묻는 질문</h2>
       <Faq items={joinFaqItems(config)} />
     </section>
   </main>
