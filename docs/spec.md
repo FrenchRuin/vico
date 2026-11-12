@@ -6,7 +6,7 @@ Vico는 각자 진행 중인 바이브 코딩 프로젝트를 등록하면, 진�
 
 - 대상: AI 도구(Claude Code, Cursor 등)로 프로젝트를 만드는 개발자와 비개발자
 - 운영 원칙: 서버와 DB 없이 운영비 0원. 등록은 PR 하나.
-- 주소: `vico.pages.dev` (Cloudflare Pages 기본 주소. 이름이 이미 쓰이고 있으면 뒤에 글자가 붙을 수 있음)
+- 주소: `vico-6eo.pages.dev` (Cloudflare Pages 기본 주소. `vico.pages.dev`는 이미 다른 프로젝트가 쓰고 있어서 뒤에 글자가 붙음)
 
 ## 2. 사용자 역할
 
@@ -125,7 +125,7 @@ demo: https://example.com
   - 새로 체크된 항목이 없으면 이전 값을 유지한다.
   - 하이라이트 대상: 휴면이 아니고 `lastCompleted.at`이 `activeDays` 이내인 프로젝트 중 `lastCompleted.at`이 가장 최근인 것. 방금 100%를 찍어 완료가 된 프로젝트도 포함된다. 없으면 하이라이트 영역을 숨긴다.
 - **F-16 비슷한 프로젝트**: 자기 자신과 휴면 제외, 겹치는 도구 수 내림차순 → 활동일 최신순, 최대 3개. 겹치는 도구가 없으면 섹션을 숨긴다.
-- **F-14 뱃지**: 빌드 시 Astro 엔드포인트(`getStaticPaths`)로 정적 SVG 생성. 왼쪽 `vico`, 오른쪽 `{진행률}% · {상태}`. 상태별 색은 design.md. 마크다운: `[![vico](https://vico.pages.dev/badge/{owner}/{repo}.svg)](https://vico.pages.dev/p/{owner}/{repo})`.
+- **F-14 뱃지**: 빌드 시 Astro 엔드포인트(`getStaticPaths`)로 정적 SVG 생성. 왼쪽 `vico`, 오른쪽 `{진행률}% · {상태}`. 상태별 색은 design.md. 마크다운: `[![vico]({siteUrl}/badge/{owner}/{repo}.svg)]({siteUrl}/p/{owner}/{repo})`.
 - **F-10 지금 활발**: 상태가 활발인 프로젝트 수 (기준이 14일이라 "이번 주"라고 부르지 않는다).
 - **F-04/F-05/F-09 URL 쿼리**: `?tab=ongoing|recruit|done|dormant&tool={도구 이름|other}&sort=recent|stars|progress&q={검색어}`. 기본값(진행중, 전체 도구, 최근 업데이트, 검색 없음)은 쿼리에서 뺀다. 모르는 값은 기본값으로 본다. 탭 개수는 도구와 검색 조건을 적용한 뒤의 개수. 스타순/진행률순은 같으면 최근 업데이트순.
 - **F-04 도구 칩**: 데이터에 있는 알려진 도구(`knownTools` 순서) + 알려지지 않은 도구가 하나라도 있으면 마지막에 "기타" 칩. 칩이 끝없이 늘어나는 것을 막기 위함.
@@ -205,7 +205,7 @@ export const config = {
   minChecklistItems: 3,
   collectConcurrency: 5,        // collect 동시 요청 수
   apiRetries: 2,                // GitHub API 실패 시 재시도 횟수
-  siteUrl: 'https://vico.pages.dev',
+  siteUrl: 'https://vico-6eo.pages.dev',
   repoUrl: 'https://github.com/{관리자}/vico',   // 실제 주소로 교체
   discordUrl: '',                                // #팀원모집 채널 초대 링크
   knownTools: ['Claude Code', 'Cursor', 'Windsurf', 'GitHub Copilot', 'Codex', 'Lovable', 'Bolt', 'Replit', 'v0'],

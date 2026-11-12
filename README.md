@@ -68,7 +68,9 @@ pnpm dev
 
 ## 배포 (Cloudflare Pages)
 
-Cloudflare 대시보드 → Workers & Pages → Create → Pages → Connect to Git에서 이 레포를 고르고 아래처럼 설정해요.
+Cloudflare 대시보드 → Workers & Pages → Create → **Pages** 탭 → Import an existing Git repository에서 이 레포를 고르고 아래처럼 설정해요.
+
+> Create를 누르면 **Workers** 탭이 기본으로 선택돼 있어요. Workers로 만들면 `wrangler deploy` 단계에서 실패해요. 설정 화면에 "Deploy command" 칸이 있으면 Workers로 들어온 거예요.
 
 | 항목 | 값 |
 | --- | --- |
@@ -76,12 +78,10 @@ Cloudflare 대시보드 → Workers & Pages → Create → Pages → Connect to 
 | Framework preset | Astro |
 | Build command | `pnpm build` |
 | Build output directory | `dist` |
-| Node 버전 | `.nvmrc`(24)를 자동으로 읽어요. 안 맞으면 환경 변수 `NODE_VERSION=24`를 넣어요 |
-
-- pnpm은 `pnpm-lock.yaml`을 보고 자동으로 써요.
+| 환경 변수 | `NODE_VERSION=24`, `PNPM_VERSION=10.34.5` (빌드 환경 기본값과 버전을 맞추기 위함) |
 - 데이터는 collect가 main에 커밋할 때마다 다시 배포돼요. 커밋이 없는 날에도 활동 상태(며칠 지났는지)가 바뀌어야 해서, maintain이 매일 Deploy Hook으로 한 번 더 빌드해요. Settings → Builds → Deploy hooks에서 훅을 만들고 주소를 `CF_DEPLOY_HOOK_URL` Secret에 넣어요.
 - 무료 플랜은 월 빌드 횟수 제한이 있어요. 수집 커밋(최대 약 240회) + 매일 재빌드(30회) + 일반 머지를 합쳐서 한도 안인지 확인해요.
-- 사이트 주소가 `https://vico.pages.dev`가 아니면 `vico.config.ts`의 `siteUrl`을 고쳐요. 뱃지 링크와 공유 주소에 쓰여요.
+- 사이트 주소는 `https://vico-6eo.pages.dev`예요 (`vico`라는 이름은 이미 쓰이고 있었어요). 주소가 바뀌면 `vico.config.ts`의 `siteUrl`을 고쳐요. 뱃지 링크와 공유 주소에 쓰여요.
 
 ## GitHub Actions
 
