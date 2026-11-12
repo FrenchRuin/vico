@@ -1,4 +1,3 @@
-import { join } from 'node:path';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { buildSiteData, loadData } from '../lib/data';
@@ -7,9 +6,9 @@ import { getHighlight } from '../lib/similar';
 import { formatDateTime } from '../src/components/Footer';
 import { HighlightCard, justCompletedIndex } from '../src/components/HighlightCard';
 import { ProjectBrowser } from '../src/components/ProjectBrowser';
-import { makeProject, NOW } from './fixtures';
+import { makeProject, NOW, sampleOnlyDataDir } from './fixtures';
 
-const { source, data } = loadData(NOW, join(process.cwd(), 'data'));
+const { source, data } = loadData(NOW, sampleOnlyDataDir());
 const site = buildSiteData(source, data, NOW);
 
 describe('메인 화면 (예시 데이터)', () => {

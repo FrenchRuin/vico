@@ -16,6 +16,10 @@
   },
   "overrides": [
     {
+      "includes": ["projects.json"],
+      "formatter": { "enabled": false }
+    },
+    {
       "includes": ["**/*.astro"],
       "linter": {
         "rules": {

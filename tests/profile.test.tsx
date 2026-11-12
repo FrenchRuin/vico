@@ -1,11 +1,10 @@
-import { join } from 'node:path';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import { buildSiteData, getOwnerProfile, loadData, type ProjectView } from '../lib/data';
 import { getStatus } from '../lib/status';
 import { formatMonth, ProfileBanner } from '../src/components/Profile';
 import { config } from '../vico.config';
-import { ago, makeProject, NOW } from './fixtures';
+import { ago, makeProject, NOW, sampleOnlyDataDir } from './fixtures';
 
 function view(overrides: Parameters<typeof makeProject>[0] = {}): ProjectView {
   const project = makeProject(overrides);
@@ -41,7 +40,7 @@ describe('프로필 화면', () => {
   });
 
   it('진행중 3개를 채운 아이디(minji-dev)는 "하나 더 올리기" 자리가 없다', () => {
-    const { source, data } = loadData(NOW, join(process.cwd(), 'data'));
+    const { source, data } = loadData(NOW, sampleOnlyDataDir());
     const site = buildSiteData(source, data, NOW);
     const full = getOwnerProfile(site.projects, 'minji-dev');
     const partial = getOwnerProfile(site.projects, 'hoon');

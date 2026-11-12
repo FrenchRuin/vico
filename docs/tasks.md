@@ -119,16 +119,16 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
   - `templates/VICO.md` 최종 확인
   - 완료 기준: README만 보고 새 PC에서 `pnpm dev`까지 가능
 
-- [ ] **T18. 첫 실제 데이터로 점검**
+- [x] **T18. 첫 실제 데이터로 점검**
   - 관리자 본인 레포 1~2개를 `projects.json`에 넣고 collect → build → 화면 확인
   - 완료 기준: 실제 데이터로 메인, 상세, 프로필, 뱃지가 모두 정상
 
 ## 사람이 직접 해야 하는 일 (Claude Code가 하지 않음)
 
-- [ ] GitHub에 `vico` 레포 생성, main에 Ruleset 설정 (PR 필수, ci 통과 필수, **bypass 목록에 "Deploy keys" 추가**)
-- [ ] 배포 키 생성 (`ssh-keygen -t ed25519`) → 공개 키는 레포 Deploy keys에 "Allow write access"로, 개인 키는 Secrets `VICO_DEPLOY_KEY`로 등록
-- [ ] 봇 계정 `vico-bot` 생성 → classic PAT(`public_repo` 스코프만) 발급 → Secrets에 `VICO_BOT_TOKEN` 등록 → 봇을 vico 레포에 Write 협업자로 초대
-- [ ] 레포 Settings → Actions: "Require approval for first-time contributors" 유지 (포크 PR 검사는 관리자 승인 후 실행)
+- [x] GitHub에 `vico` 레포 생성, main에 Ruleset 설정 (PR 필수, ci 통과 필수, **bypass 목록에 "Deploy keys" 추가**)
+- [x] 배포 키 생성 (`ssh-keygen -t ed25519`) → 공개 키는 레포 Deploy keys에 "Allow write access"로, 개인 키는 Secrets `VICO_DEPLOY_KEY`로 등록
+- [x] 봇 계정 `vico-bot-kr` 생성 (`vico-bot`은 이미 있는 이름이라 변경) → classic PAT(`public_repo` 스코프만) 발급 → Secrets에 `VICO_BOT_TOKEN` 등록 → 봇을 vico 레포에 Write 협업자로 초대
+- [x] 레포 Settings → Actions: "Require approval for first-time contributors" 유지 (포크 PR 검사는 관리자 승인 후 실행)
 - [ ] Cloudflare 계정에서 Pages 프로젝트 생성, GitHub 레포 연결, Deploy Hook 만들어 Secrets `CF_DEPLOY_HOOK_URL`에 등록
 - [ ] Cloudflare Pages 무료 플랜의 월 빌드 한도 확인 (수집 최대 약 240회 + 매일 재빌드 30회 + 일반 머지)
 - [ ] 디스코드 서버와 #팀원모집 채널 만들고 초대 링크를 `vico.config.ts`의 `discordUrl`에, 실제 레포 주소를 `repoUrl`에 입력

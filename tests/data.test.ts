@@ -14,7 +14,7 @@ import { computeProgress, findNextTask } from '../lib/progress';
 import { projectsDataSchema } from '../lib/schema';
 import { getHighlight } from '../lib/similar';
 import { countActiveByOwner } from '../lib/status';
-import { ago, makeProject, NOW } from './fixtures';
+import { ago, makeProject, NOW, sampleOnlyDataDir } from './fixtures';
 
 const DATA_DIR = join(process.cwd(), 'data');
 const sampleRaw = JSON.parse(readFileSync(join(DATA_DIR, 'sample.data.json'), 'utf8'));
@@ -66,7 +66,7 @@ describe('sample.data.json', () => {
 
 describe('loadData', () => {
   it('수집 데이터가 없으면 예시 데이터를 쓰고 날짜를 now 기준으로 옮긴다', () => {
-    const { source, data } = loadData(NOW, DATA_DIR);
+    const { source, data } = loadData(NOW, sampleOnlyDataDir());
     expect(source).toBe('sample');
     expect(data.generatedAt).toBe(NOW.toISOString());
   });
