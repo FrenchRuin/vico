@@ -84,25 +84,25 @@ design.md를 기준으로 만든다. 컴포넌트는 React, 페이지는 Astro.
 
 ## 단계 3. 자동화
 
-- [ ] **T13. 수집 스크립트 `scripts/collect.ts`**
+- [x] **T13. 수집 스크립트 `scripts/collect.ts`**
   - spec.md 7절 A-01. Octokit, 동시 5개, 재시도 2번, 레이트 리밋 대기
   - 이전 `projects.data.json`을 읽어 `lastCompleted`, `registeredAt`, `errors[].since` 이어받기
   - 결과가 같으면 파일을 쓰지 않음(generatedAt 제외 비교)
   - GitHub API 호출 부분은 주입 가능하게 만들어 테스트에서 가짜 응답 사용
   - 완료 기준: 가짜 응답으로 정상/레포 없음/비공개/VICO.md 없음/frontmatter 오류/첫 수집 시 lastCompleted null/연속 실패 since 유지 테스트, 로컬에서 실제 레포 1~2개로 `pnpm collect` 성공
 
-- [ ] **T14. 등록 검증 `scripts/validate.ts`**
+- [x] **T14. 등록 검증 `scripts/validate.ts`**
   - spec.md 7절 A-03의 검사(0~7). base 브랜치의 projects.json과 비교해 새로 추가된 레포만 검사
   - 입력은 파일 경로 인자로 받는다 (`tsx scripts/validate.ts --base projects.json --head /tmp/pr-projects.json`). 워크플로가 base 코드로 PR의 projects.json만 읽게 하기 위함
   - 결과를 마크다운 표로 출력 (워크플로에서 PR 코멘트로 사용)
   - 완료 기준: 각 실패 사유별 테스트, 실패 시 exit code 1
 
-- [ ] **T15. 리마인더와 정리 `scripts/maintain.ts`**
+- [x] **T15. 리마인더와 정리 `scripts/maintain.ts`**
   - spec.md 7절 A-04. 기본 dry-run으로 할 일만 출력, `--apply`일 때만 이슈/PR 생성
   - 중복 이슈/PR 방지 (활동일 이후 만든 `[Vico]` 이슈가 닫혀 있어도 다시 열지 않음)
   - 완료 기준: dry-run 출력 테스트 (예시 데이터 + 고정된 now), 닫힌 리마인더가 있으면 건너뜀 테스트, 중단 프로젝트 정리 시점 테스트
 
-- [ ] **T16. GitHub Actions 워크플로**
+- [x] **T16. GitHub Actions 워크플로**
   - `ci.yml`: 모든 PR에서 `pnpm check` + `pnpm build`
   - `collect.yml`: cron `0 */3 * * *`, `projects.json` push, workflow_dispatch. 바뀐 경우만 `chore(data): update projects data` 커밋, `VICO_DEPLOY_KEY`로 push. concurrency 그룹 설정
   - `validate.yml`: `projects.json`을 바꾸는 pull_request. base 코드 체크아웃 + PR의 projects.json만 읽기, 결과를 artifact로 (spec.md A-03)

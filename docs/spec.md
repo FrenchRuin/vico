@@ -203,6 +203,8 @@ export const config = {
   similarLimit: 3,              // F-16 비슷한 프로젝트 최대 개수
   recruitRowLimit: 3,           // 메인 모집 줄 최대 개수
   minChecklistItems: 3,
+  collectConcurrency: 5,        // collect 동시 요청 수
+  apiRetries: 2,                // GitHub API 실패 시 재시도 횟수
   siteUrl: 'https://vico.pages.dev',
   repoUrl: 'https://github.com/{관리자}/vico',   // 실제 주소로 교체
   discordUrl: '',                                // #팀원모집 채널 초대 링크
@@ -217,6 +219,9 @@ export const config = {
 - 실행: 3시간마다, `projects.json` 변경 시, 수동 실행
 - 레포마다: 레포 정보(stars, language, default_branch, private 여부) → 기본 브랜치 마지막 커밋 시각(`GET /repos/{o}/{r}/commits?per_page=1`) → VICO.md 내용 → VICO.md 마지막 커밋 시각(`GET /repos/{o}/{r}/commits?path=VICO.md&per_page=1`)
 - 레포가 없거나 비공개거나 VICO.md가 없거나 frontmatter가 깨졌으면 `errors`에 넣고 `projects`에서 뺀다 (명단에서는 지우지 않음).
+- 재시도 후에도 GitHub API 오류(5xx, 네트워크)가 나면 `errors`에 기록하되, 이전 데이터에 그 프로젝트가 있으면 이전 값을 그대로 유지한다. 일시적인 장애로 목록에서 사라졌다 나타나는 것을 막기 위함. 계속되면 `since` 기준으로 정리 대상이 된다.
+- 결과 `projects`는 `projects.json` 순서를 따른다 (diff를 작게 유지). 명단 안의 중복(대소문자 무시)은 한 번만 수집한다.
+- 로컬 실행 시 `.env`의 `GITHUB_TOKEN`을 읽는다. Actions에서는 `VICO_BOT_TOKEN`을 `GITHUB_TOKEN` 환경 변수로 넘긴다.
 - 이전 데이터와 비교해 `lastCompleted`, `registeredAt`, `errors[].since`를 이어받는다.
 - 결과가 이전과 같으면(generatedAt 제외) 커밋하지 않는다.
 - 동시 요청은 5개 이하로 제한. API 실패 시 2번 재시도. 레이트 리밋 응답(403/429)이면 `retry-after`/`x-ratelimit-reset`만큼 기다린다.

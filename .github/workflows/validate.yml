@@ -1,0 +1,71 @@
+# A-03 등록 검증 (1/2). 포크 PR에서도 안전하게 돌도록:
+# - base 브랜치 코드를 체크아웃하고, PR의 projects.json은 git show로 데이터만 꺼낸다.
+# - PR 쪽 코드는 실행하지 않는다. 토큰은 읽기 전용, Secrets는 쓰지 않는다.
+# - 결과는 artifact로 남기고, 코멘트는 validate-comment.yml이 단다.
+name: validate
+
+on:
+  pull_request:
+    paths: [projects.json]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Read PR files as data
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/validate"
+          git fetch --no-tags origin "+refs/pull/${PR_NUMBER}/head:refs/remotes/pr/head"
+          git show "refs/remotes/pr/head:projects.json" > "$RUNNER_TEMP/head-projects.json"
+          git diff --name-only "${BASE_SHA}...refs/remotes/pr/head" > "$RUNNER_TEMP/changed-files.txt"
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Validate
+        id: validate
+        continue-on-error: true
+        run: >
+          pnpm validate
+          --base projects.json
+          --head "$RUNNER_TEMP/head-projects.json"
+          --changed-files "$RUNNER_TEMP/changed-files.txt"
+          --out "$RUNNER_TEMP/validate/result.md"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+      - name: Save PR number
+        if: always()
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/validate"
+          echo "$PR_NUMBER" > "$RUNNER_TEMP/validate/pr-number.txt"
+          [ -f "$RUNNER_TEMP/validate/result.md" ] || \
+            printf '<!-- vico-validate -->\n## Vico 등록 검사 ❌ 실패\n\n검사를 실행하지 못했어요. 관리자가 로그를 확인할게요.\n' > "$RUNNER_TEMP/validate/result.md"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: validate-result
+          path: ${{ runner.temp }}/validate/
+          retention-days: 7
+      - name: Fail if validation failed
+        if: steps.validate.outcome != 'success'
+        run: exit 1
