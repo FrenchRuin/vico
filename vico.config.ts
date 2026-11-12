@@ -11,7 +11,8 @@ export type VicoConfig = {
   maxStepBarItems: number;
   maxActivePerOwner: number;
   similarLimit: number;
-  recruitRowLimit: number;
+  overviewProjectTiles: number;
+  checkedStripLimit: number;
   minChecklistItems: number;
   collectConcurrency: number;
   apiRetries: number;
@@ -30,7 +31,8 @@ export const config = {
   maxStepBarItems: 20, // 이보다 많으면 StepBar 대신 일반 진행률 바
   maxActivePerOwner: 3,
   similarLimit: 3, // 상세 하단 비슷한 프로젝트 최대 개수 (F-16)
-  recruitRowLimit: 3, // 메인 "같이 만들 사람을 찾고 있어요" 최대 개수
+  overviewProjectTiles: 2, // 메인 타일 묶음의 프로젝트 타일 최대 개수 (하이라이트 + 모집)
+  checkedStripLimit: 8, // 메인 "방금 체크한 항목" 띠 최대 개수
   minChecklistItems: 3,
   collectConcurrency: 5, // collect 동시 요청 수
   apiRetries: 2, // GitHub API 실패 시 재시도 횟수

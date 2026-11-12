@@ -56,7 +56,7 @@ export function ProjectSummary({ project, now }: { project: ProjectView; now: Da
             레포 보기
           </a>
           {project.demo ? (
-            <a href={project.demo} className={`${BUTTON} bg-text text-white hover:bg-text-sub`}>
+            <a href={project.demo} className={`${BUTTON} bg-text text-bg hover:bg-text-sub`}>
               데모 열기
             </a>
           ) : null}
@@ -107,7 +107,7 @@ function StageBlock({ stage, status }: { stage: Stage; status: ProjectView['stat
             <span
               aria-hidden="true"
               className={`mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-[4px] text-[11px] font-bold ${
-                item.done ? 'bg-text-muted text-white' : 'border border-border-strong'
+                item.done ? 'bg-mint text-bg' : 'border border-border-strong'
               }`}
             >
               {item.done ? '✓' : ''}
@@ -166,7 +166,7 @@ export function RecruitBanner({
 }) {
   if (!project.recruiting || project.status === 'dormant') return null;
   return (
-    <section className="flex flex-col gap-4 rounded-section bg-deep p-6 text-white">
+    <section className="flex flex-col gap-4 rounded-section border border-border bg-deep p-6 text-white">
       <h2 className="text-lg font-bold">이 프로젝트는 팀원을 찾고 있어요</h2>
       <div className="flex flex-wrap gap-2">
         {project.lookingFor.map((position) => (

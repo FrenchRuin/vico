@@ -45,12 +45,12 @@ export function FilterBar({ state, counts, tools, onChange }: FilterBarProps) {
                 aria-pressed={selected}
                 onClick={() => set({ tab })}
                 className={`${HIT_AREA} inline-flex h-10 items-center gap-1.5 rounded-[10px] px-3.5 text-sm font-semibold transition-colors ${
-                  selected ? 'bg-deep text-white' : 'text-text-sub hover:bg-muted'
+                  selected ? 'bg-text text-bg' : 'text-text-sub hover:bg-muted'
                 }`}
               >
                 {TAB_LABEL[tab]}
                 <span
-                  className={`font-mono text-xs ${selected ? 'text-deep-text' : 'text-text-muted'}`}
+                  className={`font-mono text-xs ${selected ? 'text-bg/70' : 'text-text-muted'}`}
                 >
                   {counts[tab]}
                 </span>

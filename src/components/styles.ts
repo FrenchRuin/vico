@@ -23,3 +23,11 @@ export function projectPath(project: { owner: string; repo: string }): string {
 export function profilePath(owner: string): string {
   return `/u/${owner}`;
 }
+
+/** 메인 타일 묶음의 타일 공통 모양 (docs/design.md 3.1). */
+export const TILE =
+  'relative flex flex-col overflow-hidden rounded-2xl border border-border bg-surface p-[22px]';
+
+/** 타일 오른쪽 위 테두리 알약. */
+export const TILE_PILL =
+  'inline-flex items-center gap-1 whitespace-nowrap rounded-full border px-2 py-0.5 text-[11px] font-semibold';
