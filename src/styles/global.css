@@ -5,20 +5,20 @@
 @theme {
   /* 기본 색 */
   --color-bg: #0e0c26;
-  --color-surface: #16143a;
-  --color-border: #2b2866;
+  --color-surface: #1a1846;
+  --color-border: #35317a;
   --color-border-strong: #3d3985;
-  --color-divider: #24215a;
-  --color-muted: #24215a;
+  --color-divider: #2a2766;
+  --color-muted: #2a2766;
   --color-track: #2b2866;
   --color-step-empty: #2b2866;
   --color-text: #f5f5ff;
-  --color-text-sub: #d4d2fa;
-  --color-text-muted: #aba8d8;
+  --color-text-sub: #e4e2ff;
+  --color-text-muted: #c3c0ec;
   --color-accent: #4f46e5;
   --color-accent-text: #a5b4fc;
   --color-accent-hover: #4338ca;
-  --color-accent-soft: #2b2870;
+  --color-accent-soft: #2e2a78;
   --color-accent-line: #4540a0;
   --color-deep: #1e1b4b;
   --color-deep-text: #d4d2fa;

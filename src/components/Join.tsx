@@ -20,7 +20,7 @@ export function StepCard({ step, title, children }: StepCardProps) {
         {step}
       </span>
       <div className="flex min-w-0 flex-1 flex-col gap-3">
-        <h2 className="text-lg font-bold">
+        <h2 className="text-xl font-bold">
           <span className="sr-only">{step}단계. </span>
           {title}
         </h2>
@@ -37,9 +37,9 @@ export function CodeBlock({ code, label }: { code: string; label: string }) {
       aria-label={label}
       // biome-ignore lint/a11y/noNoninteractiveTabindex: 스크롤되는 영역은 키보드로도 닿아야 한다
       tabIndex={0}
-      className="overflow-x-auto rounded-card bg-deep p-4"
+      className="overflow-x-auto rounded-card border border-border bg-bg p-4"
     >
-      <pre className="font-mono text-[13px] leading-relaxed text-deep-text">
+      <pre className="font-mono text-sm leading-relaxed text-text-sub">
         <code>{code}</code>
       </pre>
     </section>
@@ -77,8 +77,8 @@ export function statusRows(config: Pick<VicoConfig, 'activeDays' | 'quietDays'>)
 export function StatusTable({ config }: { config: Pick<VicoConfig, 'activeDays' | 'quietDays'> }) {
   return (
     <div className="overflow-hidden rounded-section border border-border bg-surface">
-      <table className="w-full text-left text-sm">
-        <thead className="border-b border-border text-xs text-text-muted">
+      <table className="w-full text-left text-[15px]">
+        <thead className="border-b border-border text-[13px] text-text-muted">
           <tr>
             <th scope="col" className="px-3 py-3 font-semibold sm:px-5">
               상태
@@ -169,7 +169,7 @@ export function Faq({ items }: { items: FaqItem[] }) {
               +
             </span>
           </summary>
-          <div className="px-5 pb-3 text-sm leading-relaxed text-text-sub">{item.answer}</div>
+          <div className="px-5 pb-3 text-[15px] leading-relaxed text-text-sub">{item.answer}</div>
         </details>
       ))}
     </div>

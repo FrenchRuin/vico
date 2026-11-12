@@ -6,7 +6,7 @@ import { ProgressRing } from './ProgressRing';
 import { profilePath, projectPath, STATUS_CLASS } from './styles';
 
 const SECTION = 'rounded-section border border-border bg-surface p-6';
-const BUTTON = 'inline-flex min-h-11 items-center rounded-[10px] px-4 text-sm font-semibold';
+const BUTTON = 'inline-flex min-h-11 items-center rounded-[10px] px-4 text-[15px] font-semibold';
 
 /** 요약 카드: 원형 진행률 + 상태, 제목, 소개, 메타 정보, 버튼. */
 export function ProjectSummary({ project, now }: { project: ProjectView; now: Date }) {
@@ -28,7 +28,7 @@ export function ProjectSummary({ project, now }: { project: ProjectView; now: Da
         </div>
         <h1 className="text-[28px] font-bold leading-tight">{project.title}</h1>
         <p className="text-text-sub">{project.summary}</p>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px] text-text-sub">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-text-sub">
           <a
             href={profilePath(project.owner)}
             className="inline-flex min-h-11 items-center font-mono font-medium hover:underline sm:min-h-0"
@@ -71,9 +71,9 @@ export function NextTaskStrip({ nextTask }: { nextTask: string | null }) {
   if (nextTask === null) return null;
   return (
     <section className="flex flex-col gap-1 rounded-card bg-accent-soft px-5 py-4 sm:flex-row sm:items-center sm:gap-4">
-      <span className="text-xs font-bold text-accent-text">다음 할 일</span>
+      <span className="text-[13px] font-bold text-accent-text">다음 할 일</span>
       <span className="font-semibold">{nextTask}</span>
-      <span className="text-[13px] text-text-muted sm:ml-auto">VICO.md의 첫 번째 미완료 항목</span>
+      <span className="text-sm text-text-muted sm:ml-auto">VICO.md의 첫 번째 미완료 항목</span>
     </section>
   );
 }
@@ -91,7 +91,7 @@ function StageBlock({ stage, status }: { stage: Stage; status: ProjectView['stat
             style={{ width: `${(done / total) * 100}%` }}
           />
         </div>
-        <span className="font-mono text-xs text-text-muted">
+        <span className="font-mono text-[13px] text-text-muted">
           {done}/{total}
         </span>
       </div>
@@ -100,7 +100,7 @@ function StageBlock({ stage, status }: { stage: Stage; status: ProjectView['stat
           <li
             // biome-ignore lint/suspicious/noArrayIndexKey: 정적 목록이고 같은 문구가 여러 번 나올 수 있다
             key={`${index}-${item.text}`}
-            className={`flex items-start gap-2 rounded-[10px] px-3 py-2.5 text-sm ${
+            className={`flex items-start gap-2 rounded-[10px] px-3 py-2.5 text-[15px] ${
               item.done ? 'bg-muted text-text-muted' : 'border border-border bg-surface'
             }`}
           >
@@ -127,11 +127,11 @@ function StageBlock({ stage, status }: { stage: Stage; status: ProjectView['stat
 export function ChecklistSection({ project }: { project: ProjectView }) {
   return (
     <section aria-labelledby="checklist-title" className={`${SECTION} flex flex-col gap-6`}>
-      <h2 id="checklist-title" className="text-lg font-bold">
+      <h2 id="checklist-title" className="text-xl font-bold">
         진행 체크리스트
       </h2>
       {project.stages.length === 0 ? (
-        <p className="text-sm text-text-muted">
+        <p className="text-[15px] text-text-muted">
           체크리스트가 비어 있어요. VICO.md에 <code className="font-mono">- [ ] 할 일</code>{' '}
           형식으로 적으면 여기에 보여요.
         </p>
@@ -167,19 +167,19 @@ export function RecruitBanner({
   if (!project.recruiting || project.status === 'dormant') return null;
   return (
     <section className="flex flex-col gap-4 rounded-section border border-border bg-deep p-6 text-white">
-      <h2 className="text-lg font-bold">이 프로젝트는 팀원을 찾고 있어요</h2>
+      <h2 className="text-xl font-bold">이 프로젝트는 팀원을 찾고 있어요</h2>
       <div className="flex flex-wrap gap-2">
         {project.lookingFor.map((position) => (
           <span
             key={position}
-            className="rounded-full bg-white/10 px-3 py-1 text-sm font-semibold text-white"
+            className="rounded-full bg-white/10 px-3 py-1 text-[15px] font-semibold text-white"
           >
             {position}
           </span>
         ))}
       </div>
       {project.contact ? (
-        <p className="text-sm text-deep-text">
+        <p className="text-[15px] text-deep-text">
           연락처: <ContactValue contact={project.contact} />
         </p>
       ) : null}
@@ -204,11 +204,11 @@ export function SimilarCard({ project }: { project: ProjectView }) {
       className="flex flex-col gap-2 rounded-card border border-border bg-surface p-4 transition-shadow hover:shadow-md"
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="truncate font-mono text-xs text-text-muted">@{project.owner}</span>
+        <span className="truncate font-mono text-[13px] text-text-muted">@{project.owner}</span>
         <StatusBadge status={project.status} />
       </div>
       <span className="font-bold leading-snug">{project.title}</span>
-      <span className="text-[13px] text-text-muted">
+      <span className="text-sm text-text-muted">
         진행률 <span className="font-mono font-bold text-text">{project.progress}%</span>
         <span className="sr-only"> · 상태 {STATUS_LABEL[project.status]}</span>
       </span>
